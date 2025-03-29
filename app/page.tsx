@@ -1,101 +1,152 @@
-import Image from "next/image";
-
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Apple, MessageCircle, Calendar, Download, Star } from "lucide-react"
+import TestimonialSection from "@/components/testimonial-section"
+import FeatureSection1 from "@/components/feature-1"
+import FeatureSection2 from "@/components/feature-2"
+import FAQSection from "@/components/faq"
+import ParallelogramSection from "@/components/start"
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex flex-col min-h-screen bg-background">
+      {/* Header with improved mobile responsiveness */}
+      <header className="px-4 lg:px-8 py-4 flex flex-col sm:flex-row items-center font-[Helvetica] font-bold">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <Link className="flex items-center justify-center" href="#">
+          <Image src="/logo.svg" alt="logo" width={150} height={50} />
+        </Link>
+        <nav className="mt-4 sm:mt-0 sm:ml-auto flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-24 items-center text-white pr-16">
+          <Link className="text-sm" href="#">
+            ABOUT US
+          </Link>
+          <Link className="text-sm " href="#">
+            TESTIMONY
+          </Link>
+          <Link className="text-sm" href="#">
+            FEATURES
+          </Link>
+          <Link className="text-sm" href="#">
+            FAQ
+          </Link>
+          <Link className="text-sm" href="#">
+            CONTACT US
+          </Link>
+          <Button className="bg-[#2E2C2C] text-[#FF4601] font-semibold font-[Helvetica] hover:bg-[#3D3B3B]">
+            START JOURNEY
+          </Button>
+        </nav>
+      </header>
+
+      <main className="flex-1">
+        {/* Hero section with improved spacing */}
+        <section className="w-full pt-32 font-inter">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="flex flex-col items-center space-y-8 text-center">
+              <div className="space-y-4">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none max-w-3xl mx-auto">
+                  <span className="text-[#FF4601]">LookFit</span>{' '}
+                  Without Sacrificing Craving
+                </h1>
+                <p className="mx-auto max-w-[700px] md:text-xl text-[#BB5200]">
+                  Achieve your ideal body with a personalized diet plan tailored to your goals, schedule, and preferences. Track your progress, enjoy your favorite foods, and see real results.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                <Button className="mb-4 bg-[#2E2C2C] hover:bg-[#3D3B3B] text-[#FF4601] font-semibold font-[Helvetica]">
+                  START YOUR JOURNEY NOW !!!
+                </Button>
+              </div>
+
+              {/* iPhone Screenshots */}
+              <div className="w-full max-w-5xl flex justify-center items-center mt-16 space-x-4 md:space-x-8 max-h-[700px]">
+                {/* Left iPhone */}
+                <div className="w-1/5 opacity-90">
+                  <Image
+                    width={220}
+                    height={200}
+                    src="/hero-left.png"
+                    alt="LookFit App Screenshot"
+                  />
+                </div>
+
+                {/* Center (Larger) iPhone */}
+
+                <div className="w-2/5 z-10 relative">
+                  <div className="absolute -inset-8 bg-gray-900/10 blur-2xl rounded-full opacity-50"></div>
+                  <Image
+                    width={820}
+                    height={200}
+                    src="/her.png"
+                    alt="LookFit App Screenshot"
+                    className="relative z-20"
+                  />
+                </div>
+
+                {/* Right iPhone */}
+                <div className="w-1/5 max-w-[250px] opacity-90 ">
+                  <Image
+                    width={220}
+                    height={200}
+                    src="/hero-right.png"
+                    alt="LookFit App Screenshot"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <TestimonialSection />
+        <FeatureSection1 />
+        <FeatureSection2 />
+        <FAQSection />
+        <ParallelogramSection />
+
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer with better mobile layout */}
+      <footer className="w-full py-8 px-4 md:px-6 border-t bg-black text-white">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between gap-8">
+            {/* Left Side - Brand Info */}
+            <div className="flex flex-col max-w-md">
+              <h3 className="text-2xl font-bold text-white mb-2">Dietify</h3>
+              <p className="text-gray-300 mb-3">
+                Your journey to a healthier, more confident you starts here. Personalized nutrition plans tailored to your goals — no cravings sacrificed.
+              </p>
+              <p className="text-lg text-white font-medium mb-4">Eat Smart. Look Better.</p>
+              <a href="#" className="text-gray-300 hover:text-white" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+            </div>
+
+            {/* Right Side - Navigation Links */}
+            <div className="flex flex-col">
+              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+              <nav className="flex flex-col gap-3">
+                <Link className="text-gray-300 hover:text-white" href="#">
+                  About Us
+                </Link>
+                <Link className="text-gray-300 hover:text-white" href="#">
+                  FAQ
+                </Link>
+                <Link className="text-gray-300 hover:text-white" href="#">
+                  Contact Us
+                </Link>
+                <Link className="text-gray-300 hover:text-white" href="#">
+                  Testimonials
+                </Link>
+              </nav>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }

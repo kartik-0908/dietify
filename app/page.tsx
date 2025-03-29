@@ -7,6 +7,7 @@ import FeatureSection2 from "@/components/feature-2"
 import FAQSection from "@/components/faq"
 import ParallelogramSection from "@/components/start"
 import Header from "@/components/header"
+import ContactUs from "@/components/contact"
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -102,6 +103,7 @@ export default function Home() {
         <FeatureSection1 />
         <FeatureSection2 />
         <FAQSection />
+        <ContactUs />
         <ParallelogramSection />
 
       </main>

@@ -28,7 +28,7 @@ const FAQSection: React.FC = () => {
     };
 
     return (
-        <section className="w-full py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 pb-0">
+        <section id='faq' className="w-full py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 pb-0">
             <div className="container mx-auto max-w-5xl">
                 <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 sm:mb-8">Frequently Asked Questions</h2>
                 <div className="space-y-4">

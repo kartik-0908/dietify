@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 
 const FeatureSection1: React.FC = () => {
     return (
-        <section className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden">
+        <section id='features' className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <img

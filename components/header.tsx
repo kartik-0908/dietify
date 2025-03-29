@@ -12,6 +12,14 @@ const Header = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setIsDrawerOpen(false);
+    }
+  };
+
   return (
     <>
       {/* Mobile Drawer (opens from right) */}
@@ -30,21 +38,11 @@ const Header = () => {
           </Button>
           
           <div className="flex flex-col space-y-6 pt-12 text-white">
-            <Link className="text-sm hover:text-[#FF4601]" href="#">
-              ABOUT US
-            </Link>
-            <Link className="text-sm hover:text-[#FF4601]" href="#">
-              TESTIMONY
-            </Link>
-            <Link className="text-sm hover:text-[#FF4601]" href="#">
-              FEATURES
-            </Link>
-            <Link className="text-sm hover:text-[#FF4601]" href="#">
-              FAQ
-            </Link>
-            <Link className="text-sm hover:text-[#FF4601]" href="#">
-              CONTACT US
-            </Link>
+            <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('about')}>ABOUT US</button>
+            <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('testimony')}>TESTIMONY</button>
+            <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('features')}>FEATURES</button>
+            <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('faq')}>FAQ</button>
+            <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('contact')}>CONTACT US</button>
             <Button className="bg-[#2E2C2C] text-[#FF4601] font-semibold font-[Helvetica] hover:bg-[#3D3B3B] w-full">
               START JOURNEY
             </Button>
@@ -77,21 +75,11 @@ const Header = () => {
 
         {/* Desktop Navigation - Adjusted for smaller screens */}
         <nav className="hidden md:flex flex-wrap justify-end gap-6 lg:gap-12 items-center text-white pr-6 lg:pr-12">
-          <Link className="text-sm" href="#">
-            ABOUT US
-          </Link>
-          <Link className="text-sm" href="#">
-            TESTIMONY
-          </Link>
-          <Link className="text-sm" href="#">
-            FEATURES
-          </Link>
-          <Link className="text-sm" href="#">
-            FAQ
-          </Link>
-          <Link className="text-sm" href="#">
-            CONTACT US
-          </Link>
+          <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('about')}>ABOUT US</button>
+          <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('testimony')}>TESTIMONY</button>
+          <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('features')}>FEATURES</button>
+          <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('faq')}>FAQ</button>
+          <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('contact')}>CONTACT US</button>
           <Button className="bg-[#2E2C2C] text-[#FF4601] font-semibold font-[Helvetica] hover:bg-[#3D3B3B]">
             START JOURNEY
           </Button>

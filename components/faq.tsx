@@ -28,23 +28,23 @@ const FAQSection: React.FC = () => {
     };
 
     return (
-        <section className="w-full py-16 md:py-24 lg:py-32">
-            <div className="container px-4 md:px-6 mx-auto max-w-5xl">
-                <h2 className="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
+        <section className="w-full py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 pb-0">
+            <div className="container mx-auto max-w-5xl">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 sm:mb-8">Frequently Asked Questions</h2>
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
                         <div key={index} className="border-b border-gray-600 overflow-hidden">
                             <button
-                                className="w-full text-left py-4 flex justify-between items-center text-white font-medium text-lg transition-all duration-300 ease-in-out"
+                                className="w-full text-left py-3 sm:py-4 flex justify-between items-center text-white font-medium text-base sm:text-lg transition-all duration-300 ease-in-out"
                                 onClick={() => toggleFAQ(index)}
                             >
                                 {faq.question}
-                                <span className="text-xl transition-transform duration-300 ease-in-out transform" style={{ transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                                <span className="text-lg sm:text-xl transition-transform duration-300 ease-in-out transform" style={{ transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                                     {openIndex === index ? '-' : '+'}
                                 </span>
                             </button>
                             <div className={`transition-max-height duration-500 ease-in-out ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-                                <p className="text-gray-300 pb-4 px-2">{faq.answer}</p>
+                                <p className="text-gray-300 pb-3 sm:pb-4 px-2 sm:px-4 text-sm sm:text-base">{faq.answer}</p>
                             </div>
                         </div>
                     ))}

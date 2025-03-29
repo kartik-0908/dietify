@@ -6,11 +6,12 @@ import FeatureSection1 from "@/components/feature-1"
 import FeatureSection2 from "@/components/feature-2"
 import FAQSection from "@/components/faq"
 import ParallelogramSection from "@/components/start"
+import Header from "@/components/header"
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Header with improved mobile responsiveness */}
-      <header className="px-4 lg:px-8 py-4 flex flex-col sm:flex-row items-center font-[Helvetica] font-bold">
+      {/* <header className="px-4 lg:px-8 py-4 pt-8 ml-16 flex flex-col sm:flex-row items-center font-[Helvetica] font-bold">
 
         <Link className="flex items-center justify-center" href="#">
           <Image src="/logo.svg" alt="logo" width={150} height={50} />
@@ -35,11 +36,12 @@ export default function Home() {
             START JOURNEY
           </Button>
         </nav>
-      </header>
+      </header> */}
+      <Header />
 
       <main className="flex-1">
         {/* Hero section with improved spacing */}
-        <section className="w-full pt-32 font-inter">
+        <section className="w-full pt-16 md:pt-32 font-inter">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center space-y-8 text-center">
               <div className="space-y-4">

@@ -1,8 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Apple, MessageCircle, Calendar, Download, Star } from "lucide-react"
 import TestimonialSection from "@/components/testimonial-section"
 import FeatureSection1 from "@/components/feature-1"
 import FeatureSection2 from "@/components/feature-2"

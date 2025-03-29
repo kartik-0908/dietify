@@ -1,8 +1,4 @@
 import React from 'react';
-import { Outfit } from "next/font/google";
-
-const outfit = Outfit({ subsets: ["latin"], weight: ["400", "700"] });
-
 
 const ParallelogramSection: React.FC = () => {
     return (

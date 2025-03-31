@@ -11,33 +11,6 @@ import ContactUs from "@/components/contact"
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      {/* Header with improved mobile responsiveness */}
-      {/* <header className="px-4 lg:px-8 py-4 pt-8 ml-16 flex flex-col sm:flex-row items-center font-[Helvetica] font-bold">
-
-        <Link className="flex items-center justify-center" href="#">
-          <Image src="/logo.svg" alt="logo" width={150} height={50} />
-        </Link>
-        <nav className="mt-4 sm:mt-0 sm:ml-auto flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-24 items-center text-white pr-16">
-          <Link className="text-sm" href="#">
-            ABOUT US
-          </Link>
-          <Link className="text-sm " href="#">
-            TESTIMONY
-          </Link>
-          <Link className="text-sm" href="#">
-            FEATURES
-          </Link>
-          <Link className="text-sm" href="#">
-            FAQ
-          </Link>
-          <Link className="text-sm" href="#">
-            CONTACT US
-          </Link>
-          <Button className="bg-[#2E2C2C] text-[#FF4601] font-semibold font-[Helvetica] hover:bg-[#3D3B3B]">
-            START JOURNEY
-          </Button>
-        </nav>
-      </header> */}
       <Header />
 
       <main className="flex-1">

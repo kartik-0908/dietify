@@ -14,51 +14,52 @@ datasource db {
 }
 
 model User {
-  id            String       @id @default(uuid())
-  email         String       @unique
-  name          String
-  password      String       // Assuming authentication is handled manually
-  personalInfo  PersonalInfo?
-  dietChart     DietChart?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  id           String        @id @default(uuid())
+  email        String        @unique
+  firstName    String
+  lastName     String
+  phoneNumber  String
+  personalInfo PersonalInfo?
+  dietChart    DietChart?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 }
 
 model PersonalInfo {
-  id        String  @id @default(uuid())
-  user      User    @relation(fields: [userId], references: [id])
-  userId    String  @unique
-  age       Int
-  height    Float  // in cm
-  weight    Float  // in kg
-  goal      String // e.g., weight loss, muscle gain
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+  age    Int
+  height Float // in cm
+  weight Float // in kg
+  goal   String // e.g., weight loss, muscle gain
 }
 
 model DietChart {
-  id         String  @id @default(uuid())
-  user       User    @relation(fields: [userId], references: [id])
-  userId     String  @unique
-  meals      Meal[]
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  meals     Meal[]
+  createdAt DateTime @default(now())
 }
 
 model Meal {
-  id         String     @id @default(uuid())
-  dietChart  DietChart  @relation(fields: [dietChartId], references: [id])
+  id          String     @id @default(uuid())
+  dietChart   DietChart  @relation(fields: [dietChartId], references: [id])
   dietChartId String
-  type       MealType  // Enum for Breakfast, Lunch, Dinner
-  items      MealItem[]
+  type        MealType // Enum for Breakfast, Lunch, Dinner
+  items       MealItem[]
 }
 
 model MealItem {
-  id       String  @id @default(uuid())
-  meal     Meal    @relation(fields: [mealId], references: [id])
+  id       String @id @default(uuid())
+  meal     Meal   @relation(fields: [mealId], references: [id])
   mealId   String
-  name     String  // Food item name
-  calories Float   // Caloric value
-  protein  Float   // Protein content (g)
-  carbs    Float   // Carbohydrates (g)
-  fats     Float   // Fats (g)
+  name     String // Food item name
+  calories Float // Caloric value
+  protein  Float // Protein content (g)
+  carbs    Float // Carbohydrates (g)
+  fats     Float // Fats (g)
 }
 
 enum MealType {
@@ -66,4 +67,3 @@ enum MealType {
   LUNCH
   DINNER
 }
-

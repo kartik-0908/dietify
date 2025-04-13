@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 const FeatureSection2: React.FC = () => {
     return (
@@ -39,14 +40,16 @@ const FeatureSection2: React.FC = () => {
                         </h1>
 
                         <p className="text-white text-sm sm:text-base">
-                            No more one-size-fits-all diets. Get a plan designed for your goals, 
+                            No more one-size-fits-all diets. Get a plan designed for your goals,
                             your cravings, and your schedule.
                         </p>
 
                         {/* Center button in mobile view */}
                         <div className="flex justify-center lg:justify-start">
                             <Button className="w-full max-w-[250px] bg-white hover:bg-gray-300 text-[#FF4601] font-semibold font-[Helvetica]">
-                                START YOUR JOURNEY NOW !!!
+                                <Link href='/sign-in'>
+                                    START YOUR JOURNEY NOW !!!
+                                </Link>
                             </Button>
                         </div>
                     </div>

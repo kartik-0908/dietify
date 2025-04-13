@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 const FeatureSection1: React.FC = () => {
     return (
@@ -68,7 +69,9 @@ const FeatureSection1: React.FC = () => {
                         {/* Center button in mobile view */}
                         <div className="flex justify-center lg:justify-start">
                             <Button className="w-full max-w-[250px] bg-white hover:bg-gray-300 text-[#FF4601] font-semibold font-[Helvetica]">
-                                START YOUR JOURNEY NOW !!!
+                                <Link href='/sign-in'>
+                                    START YOUR JOURNEY NOW !!!
+                                </Link>
                             </Button>
                         </div>
                     </div>

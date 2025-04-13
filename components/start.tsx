@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ParallelogramSection: React.FC = () => {
     return (
         <section className="relative w-full py-12 md:py-16 flex justify-center items-center font-[Outfit] px-4">
@@ -11,9 +13,11 @@ const ParallelogramSection: React.FC = () => {
                 </div>
                 {/* Right Button Section Inside Parallelogram */}
                 <button className="border-[1px] border-white text-white font-medium text-base sm:text-lg md:text-xl py-2 px-4 md:py-3 md:px-6 transform hover:bg-white hover:text-[#FF4601] transition-colors duration-300">
-                    <div className='skew-x-12'>
-                        Start your Journey
-                    </div>
+                    <Link href='/sign-in'>
+                        <div className='skew-x-12'>
+                            Start your Journey
+                        </div>
+                    </Link>
                 </button>
             </div>
         </section>

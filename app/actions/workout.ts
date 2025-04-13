@@ -28,7 +28,7 @@ export async function getWorkoutbyId(id: string) {
     }
 }
 
-export async function addWorkout(id: string, duration: number, name: string, unit: string) {
+export async function addWorkout(id: string, duration: number) {
     try {
         const user = await currentUser();
         if (!user) return;
@@ -49,7 +49,7 @@ export async function addWorkout(id: string, duration: number, name: string, uni
 
         if (workoutId === 1 || workoutId === 2 || workoutId === 4) {
             const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05));
-            const res = await prisma.workoutLog.create({
+            await prisma.workoutLog.create({
                 data: {
                     userId: userId,
                     workoutId: parseInt(id),

@@ -196,7 +196,7 @@ export async function updatemealconsumption(id: string, isConsumed: boolean) {
             return;
         }
     } catch (error) {
-
+        console.log(error)
     }
 }
 

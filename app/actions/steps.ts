@@ -86,7 +86,7 @@ export async function getStepsDataforChart() {
 
         // Convert map values to array and sort by date ascending
         const result = Array.from(dateMap.values())
-            //@ts-ignore
+            //@ts-expect-error: types are not confirmed
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .slice(-7); // last 7 days, in increasing order
 

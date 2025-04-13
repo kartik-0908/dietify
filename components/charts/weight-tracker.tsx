@@ -3,10 +3,6 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import {
   ChartConfig,
@@ -16,15 +12,6 @@ import {
 } from "@/components/ui/chart"
 import { useEffect, useState } from "react"
 import { getWeightlogsforChart } from "@/app/actions/weight"
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
-
 const chartConfig = {
   desktop: {
     label: "Weight",
@@ -33,7 +20,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function WeightChart() {
-  const [weightData, setWeightData] = useState<{ date: any, weight: number }[]>([]);
+  const [weightData, setWeightData] = useState<{ date: string, weight: number }[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

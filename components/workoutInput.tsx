@@ -13,7 +13,7 @@ export default function WorkoutInput({ unit, name, id }: { unit: string, name: s
 
     const handleAddWorkout = async () => {
         try {
-            const res = await addWorkout(id, duration, name, unit)
+            const res = await addWorkout(id, duration)
             console.log(res);
             toast({
                 title: "Workout added successfully",

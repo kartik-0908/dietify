@@ -1,11 +1,12 @@
 import prisma from '@/lib/prisma'
 import axios from 'axios'
 import { NextResponse } from 'next/server'
-export async function GET(req: Request) {
+export async function GET() {
     try {
         const res = await axios.get('https://sheetdb.io/api/v1/uxkjb92bfewmz')
         const data = res.data
-        data.map(async (item: any) => {
+        //@ts-expect-error: types are not confirmed
+        data.map(async (item) => {
             console.log(item)
             if (item.image !== '') {
                 await prisma.mealItem.create({

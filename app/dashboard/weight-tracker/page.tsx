@@ -10,14 +10,14 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { WeightChart } from '@/components/charts/weight-tracker';
-import { addWeightLog, getWeightLogs, getWeightlogsforChart } from '@/app/actions/weight';
+import { addWeightLog, getWeightLogs } from '@/app/actions/weight';
 import { formatDate } from '@/lib/date';
 
 export default function WeightTracker() {
     const router = useRouter();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentWeight, setCurrentWeight] = useState('');
-    const [weightData, setWeightData] = useState<{weight: number, date: Date}[]>([]);
+    const [weightData, setWeightData] = useState<{ weight: number, date: Date }[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {

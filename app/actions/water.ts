@@ -163,7 +163,7 @@ export async function getWaterDataforChart() {
 
         // Convert map values to array and sort by date ascending
         const result = Array.from(dateMap.values())
-            //@ts-expect-error
+            //@ts-expect-error: types are not confirmed
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .slice(-7); // last 7 days, in increasing order
 

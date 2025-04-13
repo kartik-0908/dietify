@@ -16,9 +16,6 @@ interface QuestionnaireProps {
 const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 }) => {
     const router = useRouter()
     const {user , isLoaded} = useUser();
-    if(!isLoaded) return <div>Loading...</div>
-    if(!user) return <div>Not signed in</div>
-    if(user.id === undefined) return <div>Not signed in</div>
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [selectedGender, setSelectedGender] = useState<string>('male');
@@ -28,6 +25,10 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
     const [dateOfBirth, setDateOfBirth] = useState("");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
+    if(!isLoaded) return <div>Loading...</div>
+    if(!user) return <div>Not signed in</div>
+    if(user.id === undefined) return <div>Not signed in</div>
+   
 
     const diseases = [
         "PCOD",

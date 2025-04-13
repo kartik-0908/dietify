@@ -16,29 +16,29 @@ model User {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   onboarded       Boolean        @default(false)
-  goal            String? // e.g., weight loss, muscle gain
-  gender          String? // e.g., male, female
-  dateOfBirth     DateTime? // e.g., 1990-01-01
-  height          Float? // in cm
-  weight          Float? // in kg
-  dietPreference  String? // e.g., veg, non-veg, vegan
-  activityLevel   String? // e.g., sedentary, light, moderate, heavy, athlete
+  activityLevel   String?
+  dateOfBirth     DateTime?
+  dietPreference  String?
   diseases        String[]
+  gender          String?
+  goal            String?
+  height          Float?
+  weight          Float?
   waterIntakeGoal Int            @default(2000)
-  WorkoutLog      WorkoutLog[]
-  FavoriteMeal    FavoriteMeal[]
-  WaterIntake     WaterIntake[]
   DietChart       DietChart[]
-  WeightLog       WeightLog[]
+  FavoriteMeal    FavoriteMeal[]
   StepLog         StepLog[]
+  WaterIntake     WaterIntake[]
+  WeightLog       WeightLog[]
+  WorkoutLog      WorkoutLog[]
 }
 
 model WeightLog {
   id     String   @id @default(uuid())
   userId String
-  weight Float // Weight in kg
+  weight Float
   date   DateTime @default(now())
-  note   String? // Optional notes about the weight entry
+  note   String?
   user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
@@ -59,16 +59,16 @@ model StepLog {
 model MealItem {
   id            String          @id @default(uuid())
   name          String
-  servingSize   String
+  Calories      Float
   Carbs         Float
   Fat           Float
-  Protein       Float
-  Calories      Float
   Image         String
-  FavoriteMeal  FavoriteMeal[]
+  Protein       Float
+  servingSize   String
   BreakfastItem BreakfastItem[]
-  LunchItem     LunchItem[]
   DinnerItem    DinnerItem[]
+  FavoriteMeal  FavoriteMeal[]
+  LunchItem     LunchItem[]
 }
 
 model FavoriteMeal {
@@ -76,8 +76,8 @@ model FavoriteMeal {
   userId     String
   mealItemId String
   addedAt    DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   mealItem   MealItem @relation(fields: [mealItemId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, mealItemId])
   @@index([userId])
@@ -98,7 +98,7 @@ model WorkoutLog {
   userId         String
   workoutId      Int
   date           DateTime @default(now())
-  duration       Float? // Actual duration the user performed
+  duration       Float?
   caloriesBurned Float
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   workout        Workout  @relation(fields: [workoutId], references: [id])
@@ -111,7 +111,7 @@ model WaterIntake {
   id     String   @id @default(uuid())
   userId String
   date   DateTime @default(now())
-  amount Float // Amount of water in milliliters (ml)
+  amount Float
   user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
@@ -121,14 +121,14 @@ model WaterIntake {
 model DietChart {
   id             String          @id @default(uuid())
   userId         String
+  createdAt      DateTime        @default(now())
   day            Int
   month          Int
   year           Int
-  createdAt      DateTime        @default(now())
-  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   breakfastItems BreakfastItem[]
-  lunchItems     LunchItem[]
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   dinnerItems    DinnerItem[]
+  lunchItems     LunchItem[]
 
   @@unique([userId, day, month, year])
   @@index([userId])

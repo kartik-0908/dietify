@@ -6,9 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
-  "postinstall": "prisma generate",
   "dependencies": {
     "@clerk/nextjs": "^6.12.0",
     "@prisma/client": "^6.4.1",

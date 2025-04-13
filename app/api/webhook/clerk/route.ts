@@ -44,7 +44,7 @@ export async function POST(req: Request) {
         const firstName = payload.data.first_name
         const lastName = payload.data.last_name
         const userId = payload.data.id
-        const phoneNumber = payload.data.phone_numbers[0].phone_number
+        // const phoneNumber = payload.data.phone_numbers[0].phone_number
 
         const user = await prisma.user.create({
             data: {
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
                 email,
                 firstName,
                 lastName,
-                phoneNumber,
+                // phoneNumber,
             }
         })
         console.log('User created:', JSON.stringify(user))

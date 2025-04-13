@@ -29,7 +29,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <Button className="mb-4 bg-[#2E2C2C] hover:bg-[#3D3B3B] text-[#FF4601] font-semibold font-[Helvetica]">
-                  START YOUR JOURNEY NOW !!!
+                  <Link href='/sign-in'>
+                    START YOUR JOURNEY NOW !!!
+                  </Link>
                 </Button>
               </div>
 

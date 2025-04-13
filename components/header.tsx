@@ -43,7 +43,7 @@ const Header = () => {
                         <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('faq')}>FAQ</button>
                         <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('contact')}>CONTACT US</button>
                         <Button asChild className="bg-[#2E2C2C] text-[#FF4601] font-semibold font-[Helvetica] hover:bg-[#3D3B3B] w-full">
-                            <Link href='www.google.com'>
+                            <Link href='/sign-in'>
                                 START JOURNEY
                             </Link>
                         </Button>

@@ -18,7 +18,7 @@ export async function getUserFavoriteMeals() {
                 mealItemId: true,
             },
         });
-        const favoriteMealIds = userFavorites.map(fav => fav.mealItemId);
+        const favoriteMealIds = userFavorites.map((fav: { mealItemId: string; }) => fav.mealItemId);
         const result = allMeals.map(meal => ({
             ...meal,
             isFavorite: favoriteMealIds.includes(meal.id),

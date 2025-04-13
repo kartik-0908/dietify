@@ -15,7 +15,7 @@ model User {
   phoneNumber     String?
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
-  onboarded       Boolean        @default(false)
+  isOnboarded       Boolean        @default(false)
   activityLevel   String?
   dateOfBirth     DateTime?
   dietPreference  String?

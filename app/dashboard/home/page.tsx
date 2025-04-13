@@ -13,7 +13,7 @@ async function isUserOnboarded(userId: string): Promise<boolean> {
         }
     })
     if (!user) return false
-    return user.onboarded
+    return user.isOnboarded
 }
 
 export default async function Page() {

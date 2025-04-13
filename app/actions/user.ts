@@ -19,7 +19,7 @@ export async function createProfile(userId: string, gender: string, dateOfBirth:
                 dietPreference: dietPreference,
                 dateOfBirth: dateOfBirth,
                 weight: weight, height: height,
-                onboarded: true
+                isOnboarded: true
             }
         })
         return {

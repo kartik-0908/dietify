@@ -14,6 +14,7 @@ const ParallelogramSection: React.FC = () => {
                 {/* Right Button Section Inside Parallelogram */}
                 <button className="border-[1px] border-white text-white font-medium text-base sm:text-lg md:text-xl py-2 px-4 md:py-3 md:px-6 transform hover:bg-white hover:text-[#FF4601] transition-colors duration-300">
                     <Link href='/sign-in'>
+                    
                         <div className='skew-x-12'>
                             Start your Journey
                         </div>

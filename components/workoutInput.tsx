@@ -21,12 +21,14 @@ export default function WorkoutInput({ unit, name, id }: { unit: string, name: s
                 duration: 3000,
             })
             router.push('/dashboard/workout/track')
-
-            
         } catch (error) {
-            
+            console.log(error);
+            toast({
+                title: "Error adding workout",
+                description: "Error adding workout",
+                duration: 3000,
+            })
         }
-       
     };
 
     return (

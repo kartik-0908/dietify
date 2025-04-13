@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Card } from "@/components/ui/card";
 import { Input } from '@/components/ui/input';
@@ -13,7 +12,6 @@ import { WaterIntakeLogs } from '@/lib/types/water';
 import BackButton from '@/components/backButton';
 
 export default function WaterTracker() {
-    const router = useRouter();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isGoalDialogOpen, setIsGoalDialogOpen] = useState(false);
     const [currentWater, setCurrentWater] = useState('');

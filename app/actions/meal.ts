@@ -168,7 +168,7 @@ export async function updatemealconsumption(id: string, isConsumed: boolean) {
                 id: id
             }
         })
-        if (meal) {
+        if (lunch) {
             await prisma.lunchItem.update({
                 where: {
                     id: id
@@ -184,7 +184,7 @@ export async function updatemealconsumption(id: string, isConsumed: boolean) {
                 id: id
             }
         })
-        if (meal) {
+        if (dinner) {
             await prisma.dinnerItem.update({
                 where: {
                     id: id

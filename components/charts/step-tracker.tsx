@@ -3,10 +3,6 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import {
   ChartConfig,
@@ -25,7 +21,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function StepChart() {
-  const [stepData, setStepData] = useState<{ date: any, steps: number }[]>([]);
+  const [stepData, setStepData] = useState<{ date: string, steps: number }[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -12,15 +12,6 @@ import {
 } from "@/components/ui/chart"
 import { useEffect, useState } from "react"
 import { getWaterDataforChart } from "@/app/actions/water"
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
-
 const chartConfig = {
   amount: {
     label: "amount",
@@ -29,7 +20,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function WaterChart() {
-  const [waterData, setWaterData] = useState<{date: any, amount: number}[]>([]);
+  const [waterData, setWaterData] = useState<{date: string, amount: number}[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

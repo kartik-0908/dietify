@@ -1,9 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, ArrowLeft, CircleChevronRight, CheckCircle, MinusCircle, PlusCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight} from 'lucide-react';
 import { Poppins } from 'next/font/google';
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
 import { getDietChart } from '@/app/actions/meal';
 import { DietChart, Meal } from '@/lib/types/meal';
 import BackButton from '@/components/backButton';
@@ -18,7 +17,6 @@ const poppins = Poppins({
 
 
 export default function MealSchedule() {
-    const router = useRouter();
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());

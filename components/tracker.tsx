@@ -1,4 +1,4 @@
-import { Chart as ChartJS, Title, ArcElement, Tooltip, Legend, Plugin } from 'chart.js';
+import { Chart as ChartJS, Title, ArcElement, Tooltip, Legend } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels'; // Required for displaying text inside the donut chart
 import { Component } from './charts/radial-chart';
 import { useRouter } from 'next/navigation';

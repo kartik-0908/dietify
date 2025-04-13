@@ -2,14 +2,20 @@
 
 import { getAllWorkouts } from "@/app/actions/workout";
 import BackButton from "@/components/backButton";
-import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { ChevronRight, Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
-    const [workouts, setWorkouts] = useState<any[]>([]);
+    const [workouts, setWorkouts] = useState<{
+        name: string;
+        id: number;
+        duration: number;
+        met: number;
+        unit: string;
+    }[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {

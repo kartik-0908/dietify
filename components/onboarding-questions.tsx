@@ -4,18 +4,30 @@ import CalendarIcon from './icons/calender';
 import WeightIcon from './icons/weight';
 import HeightIcon from './icons/height';
 import { CheckCircle } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import { createProfile } from '@/app/actions/user';
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation'
 
 interface QuestionnaireProps {
     totalSteps: number;
 }
 
 const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 }) => {
+    const router = useRouter()
+    const {user , isLoaded} = useUser();
+    if(!isLoaded) return <div>Loading...</div>
+    if(!user) return <div>Not signed in</div>
+    if(user.id === undefined) return <div>Not signed in</div>
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [selectedGender, setSelectedGender] = useState<string | null>('male');
+    const [selectedGender, setSelectedGender] = useState<string>('male');
     const [selectedDiet, setSelectedDiet] = useState("veg");
     const [selectedActivity, setSelectedActivity] = useState("");
     const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [weight, setWeight] = useState("");
+    const [height, setHeight] = useState("");
 
     const diseases = [
         "PCOD",
@@ -36,10 +48,67 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
 
 
     const handleNext = () => {
-        if (currentStep < totalSteps) {
-            setCurrentStep(currentStep + 1);
+        if (selectedOption === null && currentStep === 1) {
+            toast({
+                title: "Please select an option",
+                description: "Please select an option",
+                variant: "destructive",
+                duration: 3000,
+            })
+            return;
         }
+        if (dateOfBirth === "" && currentStep === 2) {
+            toast({
+                title: "Please enter your date of birth",
+                description: "Please enter your date of birth",
+                variant: "destructive",
+                duration: 3000,
+            })
+            return;
+        }
+        if (weight === "" && currentStep === 2) {
+            toast({
+                title: "Please enter your weight",
+                description: "Please enter your weight",
+                variant: "destructive",
+                duration: 3000,
+            })
+            return;
+        }
+        if (height === "" && currentStep === 2) {
+            toast({
+                title: "Please enter your height",
+                description: "Please enter your height",
+                variant: "destructive",
+                duration: 3000,
+            })
+            return;
+        }
+        if(selectedActivity === "" && currentStep === 3) {
+            toast({
+                title: "Please select your activity level",
+                description: "Please select your activity level",
+                variant: "destructive",
+                duration: 3000,
+            })
+            return;
+        }
+        setCurrentStep(currentStep + 1);
     };
+
+    const handleComplete = async ()=>{
+        const res = await createProfile(user?.id, selectedGender, new Date(dateOfBirth), parseFloat(weight), parseFloat(height), selectedOption as string, selectedActivity, selectedDiseases, selectedDiet)
+        console.log(res)
+        toast(
+            {
+                title: "Profile created successfully",
+                description: "Profile created successfully",
+                duration: 3000,
+            }
+            
+        )
+        router.push('/dashboard/home')
+    }
 
     const handlePrevious = () => {
         if (currentStep > 1) {
@@ -47,103 +116,6 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
         }
     };
 
-    // Questions for each step
-    const renderQuestions = () => {
-        switch (currentStep) {
-            case 1:
-                return (
-                    <div className="space-y-6">
-                        <h2 className="text-xl font-bold text-white">Tell us about yourself</h2>
-                        <div className="space-y-4">
-                            <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-200">Your name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-200">Email address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 2:
-                return (
-                    <div className="space-y-6">
-                        <h2 className="text-xl font-bold text-white">What are your preferences?</h2>
-                        <div className="space-y-4">
-                            <div>
-                                <p className="block text-sm font-medium text-gray-200">Select your interests</p>
-                                <div className="mt-2 space-y-2">
-                                    {['Technology', 'Design', 'Business', 'Marketing'].map((interest) => (
-                                        <label key={interest} className="flex items-center">
-                                            <input type="checkbox" className="h-4 w-4 text-indigo-600 rounded" />
-                                            <span className="ml-2 text-gray-200">{interest}</span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 3:
-                return (
-                    <div className="space-y-6">
-                        <h2 className="text-xl font-bold text-white">Your experience level</h2>
-                        <div className="space-y-4">
-                            <div>
-                                <p className="block text-sm font-medium text-gray-200">How would you rate your experience?</p>
-                                <div className="mt-2">
-                                    <select className="block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white">
-                                        <option>Beginner</option>
-                                        <option>Intermediate</option>
-                                        <option>Advanced</option>
-                                        <option>Expert</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 4:
-                return (
-                    <div className="space-y-6">
-                        <h2 className="text-xl font-bold text-white">Almost done!</h2>
-                        <div className="space-y-4">
-                            <div>
-                                <p className="block text-sm font-medium text-gray-200">Would you like to receive notifications?</p>
-                                <div className="mt-2 space-y-2">
-                                    <label className="flex items-center">
-                                        <input type="radio" name="notifications" className="h-4 w-4 text-indigo-600" />
-                                        <span className="ml-2 text-gray-200">Yes, keep me updated</span>
-                                    </label>
-                                    <label className="flex items-center">
-                                        <input type="radio" name="notifications" className="h-4 w-4 text-indigo-600" />
-                                        <span className="ml-2 text-gray-200">No, thanks</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <p className="block text-sm font-medium text-gray-200">Any additional comments?</p>
-                                <textarea
-                                    className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"
-                                    rows={3}
-                                ></textarea>
-                            </div>
-                        </div>
-                    </div>
-                );
-            default:
-                return null;
-        }
-    };
     const options = [
         { id: "fat_loss", label: "Fat Loss", description: "Ideal for obese individuals" },
         { id: "muscle_gain", label: "Muscle Gain", description: "Ideal for skinny individuals" },
@@ -237,7 +209,7 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
                                                     <span className={`block font-semibold text-lg  ${selectedOption === option.id ? "text-[#2F6DE9]" : "hover:bg-gray-700"}`} style={{ fontSize: "1.25rem" }}>
                                                         {option.label}
                                                     </span>
-                                                    <span className={`block text-sm text-gray-400  ${selectedOption === option.id ? "text-[#2F6DE9]" : "hover:bg-gray-700"}`}>
+                                                    <span className={`block text-sm ${selectedOption === option.id ? "text-[#2F6DE9]" : "hover:bg-gray-700 text-gray-400"}`}>
                                                         {option.description}
                                                     </span>
                                                 </div>
@@ -270,7 +242,9 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
                                     <input
                                         type="date"
                                         className="w-full bg-transparent text-gray-900 placeholder-[#ADA4A5] focus:outline-none pl-10"
-                                        placeholder='Date of Birth'
+                                        value={dateOfBirth}
+                                        onChange={(e) => setDateOfBirth(e.target.value)}
+                                        placeholder="Date of Birth"
                                     />
                                 </div>
 
@@ -281,6 +255,8 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
                                         <input
                                             type="number"
                                             className="w-full bg-transparent text-gray-900 placeholder-[#ADA4A5] focus:outline-none pl-3"
+                                            value={weight}
+                                            onChange={(e) => setWeight(e.target.value)}
                                             placeholder="Weight"
                                         />
                                     </div>
@@ -297,6 +273,8 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
                                         <input
                                             type="number"
                                             className="w-full bg-white text-gray-900 placeholder-[#ADA4A5] focus:outline-none pl-3"
+                                            value={height}
+                                            onChange={(e) => setHeight(e.target.value)}
                                             placeholder="Height"
                                         />
                                     </div>
@@ -433,6 +411,8 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
                             {currentStep === totalSteps && (
                                 <button
                                     className="px-4 py-2 rounded-md bg-green-600 text-white"
+                                    onClick={handleComplete}
+
                                 >
                                     Complete
                                 </button>

@@ -8,8 +8,6 @@ export async function POST(req: Request) {
         throw new Error('Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env')
     }
     const wh = new Webhook(SIGNING_SECRET)
-
-    // Get headers
     const headerPayload = await headers()
     const svix_id = headerPayload.get('svix-id') as string
     const svix_timestamp = headerPayload.get('svix-timestamp') as string

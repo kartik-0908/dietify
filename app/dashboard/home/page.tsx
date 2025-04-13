@@ -1,10 +1,33 @@
-export default function Home() {
-    return (
-        <div className="flex flex-col items-center justify-center gap-4 py-20">
-            <h1 className="text-4xl font-bold">Welcome to Dietify</h1>
-            <p className="text-lg">
-                Dietify is a sample application built with Svix. It demonstrates how to use Svix to build a full-stack application.
-            </p>
-        </div>
-    )
+import { getTodaySteps } from '@/app/actions/steps'
+import { getUserBmi } from '@/app/actions/user'
+import { getUserWeight } from '@/app/actions/weight'
+import Home from '@/components/home'
+import prisma from '@/lib/prisma'
+import { currentUser } from '@clerk/nextjs/server'
+import { redirect } from 'next/navigation'
+
+async function isUserOnboarded(userId: string): Promise<boolean> {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: userId
+        }
+    })
+    if (!user) return false
+    return user.onboarded
+}
+
+export default async function Page() {
+    const user = await currentUser()
+    if (!user) return <div>Not signed in</div>
+    const userId = user.id;
+    const isOnboarded = await isUserOnboarded(userId)
+    console.log(isOnboarded)
+    if (!isOnboarded) {
+        redirect('/dashboard/create-profile')
+    }
+    const bmi = await getUserBmi(userId)
+    const weight = await getUserWeight(userId)
+    const steps = await getTodaySteps()
+    return <Home bmi={bmi} weight={weight} steps={steps} />
+
 }

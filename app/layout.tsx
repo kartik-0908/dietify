@@ -5,6 +5,7 @@ import {
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { Outfit } from "next/font/google";
+import { Toaster } from '@/components/ui/toaster';
 
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
       <html lang="en" className='dark'>
         <body className={`${geistSans.variable} ${geistMono.variable} ${outfit} antialiased`}>
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

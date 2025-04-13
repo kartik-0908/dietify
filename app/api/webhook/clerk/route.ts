@@ -60,6 +60,7 @@ export async function POST(req: Request) {
             status: 200,
         })
     } catch (error) {
+        console.log(error)
         return new Response(`Webhook error: ${error}`, {
             status: 400,
         })

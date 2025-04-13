@@ -207,10 +207,10 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
                                                 onClick={() => setSelectedOption(option.id)}
                                             >
                                                 <div className="ml-3 text-center w-full">
-                                                    <span className={`block font-semibold text-lg  ${selectedOption === option.id ? "text-[#2F6DE9]" : "hover:bg-gray-700"}`} style={{ fontSize: "1.25rem" }}>
+                                                    <span className={`block font-semibold text-lg text-[#2F6DE9]`} style={{ fontSize: "1.25rem" }}>
                                                         {option.label}
                                                     </span>
-                                                    <span className={`block text-sm ${selectedOption === option.id ? "text-[#2F6DE9]" : "hover:bg-gray-700 text-gray-400"}`}>
+                                                    <span className={`block text-sm ${selectedOption === option.id ? "text-[#2F6DE9]" : "text-gray-400"}`}>
                                                         {option.description}
                                                     </span>
                                                 </div>

@@ -22,7 +22,7 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
     const [selectedDiet, setSelectedDiet] = useState("veg");
     const [selectedActivity, setSelectedActivity] = useState("");
     const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
-    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("2000-01-01");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     if(!isLoaded) return <div>Loading...</div>

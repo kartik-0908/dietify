@@ -56,13 +56,14 @@ export async function POST(req: Request) {
             }
         })
         console.log('User created:', JSON.stringify(user))
+        return new Response('Ok', {
+            status: 200,
+        })
     } catch (error) {
         return new Response(`Webhook error: ${error}`, {
             status: 400,
         })
 
     }
-    return new Response('Ok', {
-        status: 200,
-    })
+   
 }

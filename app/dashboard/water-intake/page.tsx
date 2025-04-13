@@ -70,7 +70,7 @@ export default function WaterTracker() {
             </div>
 
             {/* Recent Updates */}
-            <div className="w-full bg-[#232545] rounded-3xl p-4 h-screen mt-4">
+            <div className="w-full bg-[#232545] rounded-3xl p-4 h-full mt-4">
                 <h2 className="text-lg font-semibold">Recent Updates</h2>
                 <div className="w-full space-y-2 mt-2">
                     {waterData.map((entry, index) => (

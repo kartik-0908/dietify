@@ -32,8 +32,8 @@ const CircleWithArc = ({ bmi }: { bmi: number }) => {
 
   const largeArcFlag = angle > 180 ? 1 : 0;
 
-  const textX = (startX + endX) / 2 + 20;
-  const textY = (startY + endY) / 2 - 5;
+  const textX = 85;
+  const textY = 45;
 
   return (
     <svg width="120" height="120" viewBox="0 0 120 120">

@@ -15,7 +15,8 @@ export default function WorkoutInput({ unit, name, id }: { unit: string, name: s
 
     const handleAddWorkout = async () => {
         try {
-            const res = await addWorkout(id, duration)
+
+            const res = await addWorkout(id,unit,duration,numberOfSets,count)
             console.log(res);
             toast({
                 title: "Workout added successfully",

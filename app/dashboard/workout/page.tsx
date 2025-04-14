@@ -45,7 +45,7 @@ export default async function Page() {
             </div>
             <div className=' w-[100%] flex items-center justify-center pt-16'>
                 <Link href={"/dashboard/workout/track"} className='w-[50%] bg-[#2667E8] text-white rounded-full flex items-center justify-center'>
-                    <Button className=" bg-[#2667E8] text-white rounded-full">
+                    <Button className=" bg-[#2667E8] text-white rounded-full hover:bg-none shadow-none">
                         Track Workout
                     </Button>
                 </Link>

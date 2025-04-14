@@ -28,7 +28,7 @@ export async function getWorkoutbyId(id: string) {
     }
 }
 
-export async function addWorkout(id: string, duration: number) {
+export async function addWorkout(id: string, unit: string, duration: number, numberOfSets: number, count: number) {
     try {
         const user = await currentUser();
         if (!user) return;
@@ -47,13 +47,41 @@ export async function addWorkout(id: string, duration: number) {
         });
         if (!userDetails || !userDetails.weight) return;
 
-        if (workoutId === 1 || workoutId === 2 || workoutId === 4) {
+        if (unit === "count_time") {
             const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05));
             await prisma.workoutLog.create({
                 data: {
                     userId: userId,
                     workoutId: parseInt(id),
                     duration: duration,
+                    caloriesBurned: caloriesBurned,
+                }
+            })
+            return {
+                status: 'ok'
+            }
+        }
+        else if (unit === "set") {
+            const caloriesBurned = ((workout?.met * userDetails?.weight * (numberOfSets * workout.duration) * 1.05)/3600);
+            await prisma.workoutLog.create({
+                data: {
+                    userId: userId,
+                    workoutId: parseInt(id),
+                    sets: numberOfSets,
+                    caloriesBurned: caloriesBurned,
+                }
+            })
+            return {
+                status: 'ok'
+            }
+        }
+        else if (unit === "count") {
+            const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05));
+            await prisma.workoutLog.create({
+                data: {
+                    userId: userId,
+                    workoutId: parseInt(id),
+                    count: count,
                     caloriesBurned: caloriesBurned,
                 }
             })

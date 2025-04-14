@@ -15,7 +15,7 @@ model User {
   phoneNumber     String?
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
-  isOnboarded       Boolean        @default(false)
+  isOnboarded     Boolean        @default(false)
   activityLevel   String?
   dateOfBirth     DateTime?
   dietPreference  String?
@@ -57,12 +57,11 @@ model StepLog {
 }
 
 model MealItem {
-  id            String          @id @default(uuid())
+  id            Int             @id @default(autoincrement())
   name          String
   Calories      Float
   Carbs         Float
   Fat           Float
-  Image         String
   Protein       Float
   servingSize   String
   BreakfastItem BreakfastItem[]
@@ -74,7 +73,7 @@ model MealItem {
 model FavoriteMeal {
   id         String   @id @default(uuid())
   userId     String
-  mealItemId String
+  mealItemId Int
   addedAt    DateTime @default(now())
   mealItem   MealItem @relation(fields: [mealItemId], references: [id], onDelete: Cascade)
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -99,6 +98,8 @@ model WorkoutLog {
   workoutId      Int
   date           DateTime @default(now())
   duration       Float?
+  sets           Int?
+  count          Int?
   caloriesBurned Float
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   workout        Workout  @relation(fields: [workoutId], references: [id])
@@ -137,7 +138,7 @@ model DietChart {
 model BreakfastItem {
   id          String    @id @default(uuid())
   dietChartId String
-  mealItemId  String
+  mealItemId  Int
   servingSize String
   Carbs       Float
   Fat         Float
@@ -154,7 +155,7 @@ model BreakfastItem {
 model LunchItem {
   id          String    @id @default(uuid())
   dietChartId String
-  mealItemId  String
+  mealItemId  Int
   servingSize String
   Carbs       Float
   Fat         Float
@@ -171,7 +172,7 @@ model LunchItem {
 model DinnerItem {
   id          String    @id @default(uuid())
   dietChartId String
-  mealItemId  String
+  mealItemId  Int
   servingSize String
   Carbs       Float
   Fat         Float

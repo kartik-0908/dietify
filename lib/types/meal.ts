@@ -1,6 +1,6 @@
 export type Meal = {
     id: string;
-    mealItemId: string;
+    mealItemId: number;
     servingSize: string;
     Carbs: number;
     Fat: number;
@@ -10,13 +10,12 @@ export type Meal = {
     isConsumed: boolean;
     mealItem: {
         name: string;
-        id: string;
+        id: number;
         servingSize: string;
         Carbs: number;
         Fat: number;
         Protein: number;
         Calories: number;
-        Image: string;
     };
 }
 

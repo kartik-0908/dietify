@@ -18,7 +18,7 @@ export async function getUserFavoriteMeals() {
                 mealItemId: true,
             },
         });
-        const favoriteMealIds = userFavorites.map((fav: { mealItemId: string; }) => fav.mealItemId);
+        const favoriteMealIds = userFavorites.map((fav: { mealItemId: number; }) => fav.mealItemId);
         const result = allMeals.map((meal) => ({
             ...meal,
             isFavorite: favoriteMealIds.includes(meal.id),
@@ -33,7 +33,7 @@ export async function getUserFavoriteMeals() {
 
 
 
-export async function toggleFavoriteItem(mealItemId: string) {
+export async function toggleFavoriteItem(mealItemId: number) {
     try {
         const user = await currentUser();
         if (!user) return;
@@ -74,7 +74,7 @@ export async function toggleFavoriteItem(mealItemId: string) {
     }
 }
 
-export async function removeMealFromFavorites(userId: string, mealItemId: string) {
+export async function removeMealFromFavorites(userId: string, mealItemId: number) {
     try {
         const favorite = await prisma.favoriteMeal.delete({
             where: {

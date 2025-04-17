@@ -16,11 +16,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   userImage 
 }) => {
   return (
-    <div  className="h-[350px] w-80 border-b-4 border-b-[#BB5200] overflow-hidden rounded-none bg-transparent">
+    <div  className="h-[380px] w-80 border-b-4 border-b-[#BB5200] overflow-hidden rounded-none bg-transparent">
       <div className="flex flex-col p-6 pt-8 space-y-6 h-full bg-[#050505] bg-opacity-40 text-white rounded-none">
         {/* Testimony Text */}
-        <p className="text-left text-gray-300  text-base flex-grow">
-          {testimony}
+        <p className="text-left text-gray-300  text-base flex-grow text-sm italic">
+          " {testimony} "
         </p>
         
         {/* Star Rating */}

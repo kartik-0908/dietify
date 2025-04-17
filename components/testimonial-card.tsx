@@ -20,7 +20,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <div className="flex flex-col p-6 pt-8 space-y-6 h-full bg-[#050505] bg-opacity-40 text-white rounded-none">
         {/* Testimony Text */}
         <p className="text-left text-gray-300  text-base flex-grow text-sm italic">
-          " {testimony} "
+        &quot; {testimony} &quot;
         </p>
         
         {/* Star Rating */}

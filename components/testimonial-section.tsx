@@ -12,22 +12,22 @@ interface Testimonial {
 const TestimonialSection: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
-      testimony: "LookFit transformed my approach to diet and fitness. The personalized plans actually work, and I've never felt better!",
-      userName: "Sarah Johnson",
-      userTitle: "Fitness Enthusiast",
-      userImage: "/user1.jpg"
+      testimony: "I’ve always worked out, but never got the results I wanted because I couldn’t follow boring diet charts. Dietify gave me a macro-friendly Indian plan that lets me enjoy parathas and still hit my protein goals. I’ve leaned down, gained energy, and never felt like I’m dieting. Highly recommend for fitness lovers who want results without sacrifice!",
+      userName: "Chetan Gupta",
+      userTitle: "Businessman",
+      userImage: "/testimonial/chetan.jpeg"
     },
     {
-      testimony: "The influencer consultations are game-changing. The personalized advice has taken my performance to the next level.",
-      userName: "Mike Rodriguez",
-      userTitle: "Professional Athlete",
-      userImage: "/user2.jpg"
+      testimony: "Being in college with hostel food and peer pressure, I used to eat mindlessly and feel bad later. Dietify taught me how to eat mindfully while still having Maggi or momos occasionally. It’s not just a diet app—it’s a mindset shift. I feel lighter, more confident, and more in control than ever",
+      userName: "Anip Verma",
+      userTitle: "College Student",
+      userImage: "/testimonial/anip.jpeg"
     },
     {
-      testimony: "As a nutrition professional, I'm impressed by LookFit's approach. The diet plans are scientifically sound and truly personalized.",
-      userName: "Emma Thompson",
-      userTitle: "Nutrition Coach",
-      userImage: "/user3.jpg"
+      testimony: "As someone juggling long work hours and zero time to cook complex meals, I’ve failed with so many strict diets. But Dietify’s personalized plan felt different—no bans, just balance. I still eat my mom’s rajma chawal on Sundays and yet I’ve dropped 6 kg in 2 months! The tracking and support made me feel in control, not restricted",
+      userName: "Pranav Gupta",
+      userTitle: "Marketing Manager",
+      userImage: "/testimonial/pranav.jpeg"
     }
   ];
 

@@ -38,6 +38,7 @@ const OnboardingQuestionnaire: React.FC<QuestionnaireProps> = ({ totalSteps = 4 
         "Physical Injury",
         "Thyroid",
         "Hypertension",
+        "None of these"
     ];
 
     const toggleDisease = (disease: string) => {

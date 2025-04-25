@@ -41,7 +41,7 @@ const ContactUs: React.FC = () => {
                             className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#FF4601] focus:outline-none"
                         />
                         <textarea
-                            placeholder="Your Goal"
+                            placeholder="Your Query"
                             rows={4}
                             className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-[#FF4601] focus:outline-none"
                         ></textarea>

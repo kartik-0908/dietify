@@ -36,14 +36,16 @@ export default function Home({ bmi, weight, steps }: { bmi: number, weight: numb
                     </div>
                 </div>
             </div>
-            <div onClick={()=>router.push('/dashboard/meal-schedule')} className="flex items-center justify-start gap-4 mt-8 w-full px-4 py-3 bg-[#232545] rounded-3xl">
-                <Image
-                    height={32}
-                    width={32}
-                    src="/food.png"
-                    alt="Track food"
-                    className="w-16 h-16 object-cover"
-                />
+            <div onClick={() => router.push('/dashboard/meal-schedule')} className="flex items-center justify-start gap-4 mt-8 w-full px-4 py-3 bg-[#232545] rounded-3xl">
+                <div className="flex items-center justify-center shadow-none pl-2">
+                    <Image
+                        height={64}
+                        width={64}
+                        src="/food.svg"
+                        alt="Track food"
+                        className="w-16 h-16 justify-center items-center shadow-none border-none"
+                    />
+                </div>
                 <span className="text-lg font-medium pl-8 text-white">Track Food</span>
             </div>
             <div className="flex items-center justify-between w-full px-4 py-3 bg-gradient-to-r from-[#232545] to-[#070517] rounded-3xl shadow-lg drop-shadow-[0_5px_8px_#95ADFE]">
@@ -87,13 +89,13 @@ export default function Home({ bmi, weight, steps }: { bmi: number, weight: numb
             </Link>
             <div className="flex gap-4 w-full">
                 {/* Footsteps Card */}
-                <div onClick={()=>router.push('/dashboard/step-tracker')} className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl w-1/2">
+                <div onClick={() => router.push('/dashboard/step-tracker')} className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl w-1/2">
                     <FootprintsIcon className="text-white text-3xl" />
                     <span className="text-white text-sm font-medium">{steps}  Foot Steps</span>
                 </div>
 
                 {/* Weight Card */}
-                <div onClick={()=>router.push('/dashboard/weight-tracker')} className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl w-1/2">
+                <div onClick={() => router.push('/dashboard/weight-tracker')} className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl w-1/2">
                     <LucideWeight className="text-white text-2xl" />
                     <div className="flex flex-col">
                         <span className="text-white font-medium">{weight} kg</span>

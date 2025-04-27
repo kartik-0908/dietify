@@ -1,12 +1,11 @@
-'use client'
 import CircleWithArc from "@/components/charts/pie";
 import WaterIntakeTracker from "@/components/tracker";
-import { useUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { FootprintsIcon, ForkKnifeCrossed, LucideWeight, User, WeightIcon } from "lucide-react";
 import { Poppins } from 'next/font/google'
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const poppins = Poppins({
     subsets: ['latin'], // Or other subsets as needed
@@ -15,9 +14,8 @@ const poppins = Poppins({
     display: 'swap' // Recommended for performance
 })
 
-export default function Home({ bmi, weight, steps }: { bmi: number, weight: number, steps: number }) {
-    const { user } = useUser();  // Clerk hook to get the authenticated user
-    const router = useRouter()
+export default async function Home({ bmi, weight, steps }: { bmi: number, weight: number, steps: number }) {
+    const user = await currentUser();  // Clerk hook to get the authenticated user
 
     return (
         <div className={`${poppins.variable} font-poppins flex flex-col items-start justify-start gap-4 py-20 bg-[#070417] text-white min-h-screen px-10`}>
@@ -36,18 +34,21 @@ export default function Home({ bmi, weight, steps }: { bmi: number, weight: numb
                     </div>
                 </div>
             </div>
-            <div onClick={() => router.push('/dashboard/meal-schedule')} className="flex items-center justify-start gap-4 mt-8 w-full px-4 py-3 bg-[#232545] rounded-3xl">
-                <div className="flex items-center justify-center shadow-none pl-2">
-                    <Image
-                        height={64}
-                        width={64}
-                        src="/food.svg"
-                        alt="Track food"
-                        className="w-16 h-16 justify-center items-center shadow-none border-none"
-                    />
+            <Link href={'/dashboard/meal-schedule'} className="w-full">
+                <div className="flex items-center justify-start gap-4 mt-8 w-full px-4 py-3 bg-[#232545] rounded-3xl">
+                    <div className="flex items-center justify-center shadow-none pl-2">
+                        <Image
+                            height={64}
+                            width={64}
+                            src="/food.svg"
+                            alt="Track food"
+                            className="w-16 h-16 justify-center items-center shadow-none border-none"
+                        />
+                    </div>
+                    <span className="text-lg font-medium pl-8 text-white">Track Food</span>
                 </div>
-                <span className="text-lg font-medium pl-8 text-white">Track Food</span>
-            </div>
+            </Link>
+
             <div className="flex items-center justify-between w-full px-4 py-3 bg-gradient-to-r from-[#232545] to-[#070517] rounded-3xl shadow-lg drop-shadow-[0_5px_8px_#95ADFE]">
                 {/* Left Container: BMI Text & Message */}
                 <div className="flex flex-col items-start text-white">
@@ -89,19 +90,23 @@ export default function Home({ bmi, weight, steps }: { bmi: number, weight: numb
             </Link>
             <div className="flex gap-4 w-full">
                 {/* Footsteps Card */}
-                <div onClick={() => router.push('/dashboard/step-tracker')} className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl w-1/2">
-                    <FootprintsIcon className="text-white text-3xl" />
-                    <span className="text-white text-sm font-medium">{steps}  Foot Steps</span>
-                </div>
-
-                {/* Weight Card */}
-                <div onClick={() => router.push('/dashboard/weight-tracker')} className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl w-1/2">
-                    <LucideWeight className="text-white text-2xl" />
-                    <div className="flex flex-col">
-                        <span className="text-white font-medium">{weight} kg</span>
-                        <span className="text-white text-sm font-medium opacity-75">Weight Track</span>
+                <Link href={'/dashboard/step-tracker'} className="w-full">
+                    <div className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl h-full">
+                        <FootprintsIcon className="text-white text-3xl" />
+                        <span className="text-white text-sm font-medium">{steps}  Foot Steps</span>
                     </div>
-                </div>
+                </Link>
+                {/* Weight Card */}
+                <Link href={'/dashboard/weight-tracker'} className="w-full">
+                    <div className="flex items-center gap-3 bg-[#232545] px-4 py-3 rounded-2xl h-full">
+                        <LucideWeight className="text-white text-2xl" />
+                        <div className="flex flex-col">
+                            <span className="text-white font-medium">{weight} kg</span>
+                            <span className="text-white text-sm font-medium opacity-75">Weight Track</span>
+                        </div>
+                    </div>
+                </Link>
+
 
             </div>
             <Link href={'/dashboard/profile'} className="w-full">

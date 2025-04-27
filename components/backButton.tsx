@@ -1,12 +1,13 @@
-'use client'
 import { ChevronLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-export default function BackButton({route}: {route: string}) {
-    const router = useRouter()
+export default function BackButton({ route }: { route: string }) {
     return (
-        <button onClick={() => router.push(route)} className="mr-4 p-2 rounded-lg">
-            <ChevronLeft />
-        </button>
+        <Link href={route} className="flex items-center gap-4">
+            <button className="mr-4 p-2 rounded-lg">
+                <ChevronLeft />
+            </button>
+        </Link>
+
     )
 }

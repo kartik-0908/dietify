@@ -47,7 +47,21 @@ export async function addWorkout(id: string, unit: string, duration: number, num
         });
         if (!userDetails || !userDetails.weight) return;
 
-        if (unit === "count_time") {
+        if (unit === "hours") {
+            const caloriesBurned = ((workout?.met * userDetails?.weight * (duration*60) * 1.05));
+            await prisma.workoutLog.create({
+                data: {
+                    userId: userId,
+                    workoutId: parseInt(id),
+                    duration: duration,
+                    caloriesBurned: caloriesBurned,
+                }
+            })
+            return {
+                status: 'ok'
+            }
+        }
+        else if (unit === "min") {
             const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05));
             await prisma.workoutLog.create({
                 data: {
@@ -76,7 +90,7 @@ export async function addWorkout(id: string, unit: string, duration: number, num
             }
         }
         else if (unit === "count") {
-            const caloriesBurned = ((workout?.met * userDetails?.weight * (count) * 1.05));
+            const caloriesBurned = ((workout?.met * userDetails?.weight * (count * workout.duration) * 1.05));
             await prisma.workoutLog.create({
                 data: {
                     userId: userId,

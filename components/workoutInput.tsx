@@ -16,7 +16,7 @@ export default function WorkoutInput({ unit, name, id }: { unit: string, name: s
     const handleAddWorkout = async () => {
         try {
 
-            const res = await addWorkout(id,unit,duration,numberOfSets,count)
+            const res = await addWorkout(id, unit, duration, numberOfSets, count)
             console.log(res);
             toast({
                 title: "Workout added successfully",
@@ -36,7 +36,7 @@ export default function WorkoutInput({ unit, name, id }: { unit: string, name: s
 
     return (
         <div className="w-full flex flex-col items-center gap-2">
-            {unit === "count_time" ? (
+            {unit === "hours" ? (
                 <div className="w-full flex flex-col gap-2">
                     <label>{name} Duration</label>
                     <div className="w-full bg-[#232545] flex items-center rounded-sm p-2 pr-4 text-white">
@@ -49,32 +49,45 @@ export default function WorkoutInput({ unit, name, id }: { unit: string, name: s
 
                 </div>
             ) :
-                unit === 'set' ? (
+                unit === 'min' ? (
                     <div className="w-full flex flex-col gap-2">
-                        <label>{name} no. of sets</label>
+                        <label>{name} Duration</label>
                         <div className="w-full bg-[#232545] flex items-center rounded-sm p-2 pr-4 text-white">
                             <Input
                                 className=" bg-[#232545] rounded-sm text-white focus:outline-none"
-                                onChange={(e) => setNumberOfSets(parseFloat(e.target.value))}
+                                onChange={(e) => setDuration(parseFloat(e.target.value))}
                                 placeholder="10" type="number" min={1} max={100} step={1} defaultValue={0.0} />
-                            <div>sets</div>
+                            <div>minutes</div>
                         </div>
                     </div>
                 ) :
-                    unit === 'count' ? (
+
+                    unit === 'set' ? (
                         <div className="w-full flex flex-col gap-2">
-                            <label>{name} Count</label>
+                            <label>{name} no. of sets</label>
                             <div className="w-full bg-[#232545] flex items-center rounded-sm p-2 pr-4 text-white">
                                 <Input
                                     className=" bg-[#232545] rounded-sm text-white focus:outline-none"
-                                    onChange={(e) => setCount(parseFloat(e.target.value))}
+                                    onChange={(e) => setNumberOfSets(parseFloat(e.target.value))}
                                     placeholder="10" type="number" min={1} max={100} step={1} defaultValue={0.0} />
-                                <div>no.</div>
+                                <div>sets</div>
                             </div>
                         </div>
-                    )
-                        :
-                        <Input placeholder="Enter workout duration in minutes" type="number" min={1} max={100} step={1} defaultValue={0} />
+                    ) :
+                        unit === 'count' ? (
+                            <div className="w-full flex flex-col gap-2">
+                                <label>{name} Count</label>
+                                <div className="w-full bg-[#232545] flex items-center rounded-sm p-2 pr-4 text-white">
+                                    <Input
+                                        className=" bg-[#232545] rounded-sm text-white focus:outline-none"
+                                        onChange={(e) => setCount(parseFloat(e.target.value))}
+                                        placeholder="10" type="number" min={1} max={100} step={1} defaultValue={0.0} />
+                                    <div>no.</div>
+                                </div>
+                            </div>
+                        )
+                            :
+                            <Input placeholder="Enter workout duration in minutes" type="number" min={1} max={100} step={1} defaultValue={0} />
             }
             <div className="w-full flex justify-center gap-2 mt-8">
                 <Button onClick={handleAddWorkout} className="bg-[#1D61E7] text-white rounded-md px-4 py-2">

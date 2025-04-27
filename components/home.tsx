@@ -2,7 +2,7 @@
 import CircleWithArc from "@/components/charts/pie";
 import WaterIntakeTracker from "@/components/tracker";
 import { useUser } from "@clerk/nextjs";
-import { FootprintsIcon, ForkKnifeCrossed, LucideWeight, WeightIcon } from "lucide-react";
+import { FootprintsIcon, ForkKnifeCrossed, LucideWeight, User, WeightIcon } from "lucide-react";
 import { Poppins } from 'next/font/google'
 import Image from "next/image";
 import Link from "next/link";
@@ -104,6 +104,15 @@ export default function Home({ bmi, weight, steps }: { bmi: number, weight: numb
                 </div>
 
             </div>
+            <Link href={'/dashboard/profile'} className="w-full">
+                <div className="flex items-center justify-between gap-4 w-full px-4 py-3 bg-[#232545] rounded-3xl">
+                    <div className="flex items-center gap-4">
+                        <User className="text-[#4B89EC]" />
+                        <span className="text-lg font-medium text-white">User Profile</span>
+                    </div>
+                    <span className="text-white text-xl">{'>'}</span>
+                </div>
+            </Link>
         </div>
     );
 }

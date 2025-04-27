@@ -169,7 +169,7 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl text-gray-700 font-bold mb-2">Results That Last</h3>
                 <p className="text-gray-600">
-                  At Dietify, we don&apos;t believe in temporary transformations — we believe in lasting change. And we're here to support you every step of the way.
+                  At Dietify, we don&apos;t believe in temporary transformations — we believe in lasting change. And we&apos;re here to support you every step of the way.
                 </p>
               </div>
             </div>

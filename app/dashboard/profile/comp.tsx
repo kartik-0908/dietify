@@ -82,10 +82,8 @@ export default function Profile({ userData }: {
     //     }));
     // };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        // Here you would typically send the updated data to your API
         try {
             const res = await updateUserProfile(formData);
             console.log(res);
@@ -106,7 +104,7 @@ export default function Profile({ userData }: {
                 </button>
                 <p className="text-2xl font-bold">Profile</p>
                 <button
-                    onClick={() => isEditing ? handleSubmit(event) : setIsEditing(true)}
+                    onClick={() => isEditing ? handleSubmit : setIsEditing(true)}
                     className="ml-auto p-2 rounded-full bg-[#232545]"
                 >
                     {isEditing ? <Save className="text-[#4B89EC]" /> : <Edit2 className="text-[#4B89EC]" />}

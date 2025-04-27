@@ -63,18 +63,18 @@ export default function AboutUs() {
                   />
                 </div>
                 <div className="mt-4 text-sm text-gray-500 text-center">
-                  Dhruv's story was featured in Hindustan Times
+                  Dhruv&apos;s story was featured in Hindustan Times
                 </div>
               </div>
               <div className="space-y-6 order-1 lg:order-2">
                 <p className="text-gray-700 md:text-lg">
-                  At Dietify, we believe that achieving your fitness goals shouldn't mean giving up the foods you love. Our journey began when we noticed a common struggle — people wanting to lose fat but feeling trapped by restrictive diets.
+                  At Dietify, we believe that achieving your fitness goals shouldn&apos;t mean giving up the foods you love. Our journey began when we noticed a common struggle — people wanting to lose fat but feeling trapped by restrictive diets.
                 </p>
                 <p className="text-gray-700 md:text-lg">
                   This realization hit home when Dhruv, our co-founder and a fitness influencer, embarked on his own transformation journey. His story, recently featured in Hindustan Times, became a powerful source of inspiration for us. Dhruv lost 27 kg in just five months, not by giving up his favorite foods, but by adopting a balanced, flexible approach to nutrition.
                 </p>
                 <p className="text-gray-700 md:text-lg">
-                  Seeing how Dhruv navigated common fat-loss mistakes and achieved sustainable results motivated us to take action. We knew there had to be a better way for people to reach their goals while enjoying their meals. That's when Dietify was born.
+                  Seeing how Dhruv navigated common fat-loss mistakes and achieved sustainable results motivated us to take action. We knew there had to be a better way for people to reach their goals while enjoying their meals. That&apos;s when Dietify was born.
                 </p>
                 <div className="pt-4">
                   <Button className="bg-[#2E2C2C] hover:bg-[#3D3B3B] text-[#FF4601] font-semibold">
@@ -117,7 +117,7 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl text-gray-700 font-bold mb-2">Enjoyment Without Guilt</h3>
                 <p className="text-gray-600">
-                  Food is meant to be enjoyed. Whether it's a family gathering or a spontaneous street food craving, we believe in finding a balance. We aim to make dieting flexible and enjoyable.
+                  Food is meant to be enjoyed. Whether it&apos;s a family gathering or a spontaneous street food craving, we believe in finding a balance. We aim to make dieting flexible and enjoyable.
                 </p>
               </div>
               
@@ -129,7 +129,7 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl text-gray-700 font-bold mb-2">Sustainability for Success</h3>
                 <p className="text-gray-600">
-                  Quick fixes and crash diets don't last. Dietify promotes a sustainable approach to weight management by focusing on habit formation and providing realistic, adaptable plans.
+                  Quick fixes and crash diets don&apos;t last. Dietify promotes a sustainable approach to weight management by focusing on habit formation and providing realistic, adaptable plans.
                 </p>
               </div>
               
@@ -169,7 +169,7 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl text-gray-700 font-bold mb-2">Results That Last</h3>
                 <p className="text-gray-600">
-                  At Dietify, we don't believe in temporary transformations — we believe in lasting change. And we're here to support you every step of the way.
+                  At Dietify, we don&apos;t believe in temporary transformations — we believe in lasting change. And we're here to support you every step of the way.
                 </p>
               </div>
             </div>
@@ -255,7 +255,7 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl text-gray-700 font-bold">AI Adaptability</h3>
                 <p className="text-gray-600">
-                  Your plan evolves with you. Whether you're dining out, traveling, or celebrating, our AI dynamically adjusts your plan to keep you on track without missing out on life's moments.
+                  Your plan evolves with you. Whether you&apos;re dining out, traveling, or celebrating, our AI dynamically adjusts your plan to keep you on track without missing out on life&apos;s moments.
                 </p>
               </div>
               

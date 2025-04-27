@@ -26,12 +26,6 @@ export default function Profile({ userData }: {
         height: number,
         weight: number,
         waterIntakeGoal: number,
-        DietChart: any,
-        FavoriteMeal: any,
-        StepLog: any,
-        WaterIntake: any,
-        WeightLog: any,
-        WorkoutLog: any
     }
 }) {
     const router = useRouter();
@@ -49,9 +43,9 @@ export default function Profile({ userData }: {
         weight: userData?.weight 
     });
 
-    const [diseaseInput, setDiseaseInput] = useState('');
+    // const [diseaseInput, setDiseaseInput] = useState('');
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -59,7 +53,16 @@ export default function Profile({ userData }: {
         }));
     };
 
-    const handleWeightChange = (e: any) => {
+
+    const handleGenderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -90,6 +93,7 @@ export default function Profile({ userData }: {
         // Here you would typically send the updated data to your API
         try {
             const res = await updateUserProfile(formData);
+            console.log(res);
 
             console.log("Profile updated:", formData);
             setIsEditing(false);
@@ -203,7 +207,7 @@ export default function Profile({ userData }: {
                             <select
                                 name="gender"
                                 value={formData.gender}
-                                onChange={handleChange}
+                                onChange={handleGenderChange}
                                 disabled={!isEditing}
                                 className="bg-[#1C1E3A] text-white p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#4B89EC]"
                             >

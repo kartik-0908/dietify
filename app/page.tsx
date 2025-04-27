@@ -91,9 +91,9 @@ export default function Home() {
             <div className="flex flex-col max-w-md">
               <h3 className="text-2xl font-bold text-white mb-2">Dietify</h3>
               <p className="text-gray-300 mb-3">
-                Your journey to a healthier, more confident you starts here. Personalized nutrition plans tailored to your goals — no cravings sacrificed.
+                Transform Your Body. Own Your Confidence.
               </p>
-              <p className="text-lg text-white font-medium mb-4">Eat Smart. Look Better.</p>
+              <p className="text-lg text-white font-medium mb-4">Ready to feel great</p>
               <a href="#" className="text-gray-300 hover:text-white" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>

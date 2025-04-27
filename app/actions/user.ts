@@ -4,7 +4,15 @@ import prisma from "@/lib/prisma"
 import { getUserWeight } from "./weight"
 import { currentUser } from "@clerk/nextjs/server";
 
-export async function getUserDetails(): Promise<any> {
+export async function getUserDetails() : Promise<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    gender: string ;
+    dateOfBirth: Date;
+    weight: number ;
+    height: number ;
+} | null> {
     const clerkUser = await currentUser()
     try {
         const user = await prisma.user.findUnique({
@@ -13,7 +21,15 @@ export async function getUserDetails(): Promise<any> {
             }
         });
         if (!user) return null;
-        return user;
+        return {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            gender: user.gender || '',
+            dateOfBirth: (user.dateOfBirth) || new Date(),
+            weight: user.weight || 0,
+            height: user.height || 0
+        }
     } catch (error) {
         console.log(error);
         return null;

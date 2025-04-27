@@ -17,15 +17,10 @@ export default function Profile({ userData }: {
         email: string,
         firstName: string,
         lastName: string,
-        activityLevel: string,
-        dateOfBirth: string,
-        dietPreference: string,
-        diseases: string[],
+        dateOfBirth: Date,
         gender: string,
-        goal: string,
         height: number,
         weight: number,
-        waterIntakeGoal: number,
     }
 }) {
     const router = useRouter();

@@ -4,8 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
+    const router = useRouter();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const toggleDrawer = () => {
@@ -37,7 +39,7 @@ const Header = () => {
                     </Button>
 
                     <div className="flex flex-col space-y-6 pt-12 text-white">
-                        <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('about')}>ABOUT US</button>
+                        <button className="text-sm hover:text-[#FF4601]" onClick={() => router.push('/about-us')}>ABOUT US</button>
                         <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('testimony')}>TESTIMONY</button>
                         <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('features')}>FEATURES</button>
                         <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('faq')}>FAQ</button>
@@ -76,7 +78,7 @@ const Header = () => {
 
                 {/* Desktop Navigation - Adjusted for smaller screens */}
                 <nav className="hidden md:flex flex-wrap justify-end gap-6 lg:gap-12 items-center text-white pr-6 lg:pr-12">
-                    <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('about')}>ABOUT US</button>
+                    <button className="text-sm hover:text-[#FF4601]" onClick={() => router.push('/about-us')}>ABOUT US</button>
                     <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('testimony')}>TESTIMONY</button>
                     <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('features')}>FEATURES</button>
                     <button className="text-sm hover:text-[#FF4601]" onClick={() => scrollToSection('faq')}>FAQ</button>

@@ -107,7 +107,7 @@ export default function Home() {
             <div className="flex flex-col">
               <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
               <nav className="flex flex-col gap-3">
-                <Link className="text-gray-300 hover:text-white" href="#">
+                <Link className="text-gray-300 hover:text-white" href="/about-us">
                   About Us
                 </Link>
                 <Link className="text-gray-300 hover:text-white" href="#">

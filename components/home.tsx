@@ -5,7 +5,6 @@ import { FootprintsIcon, ForkKnifeCrossed, LucideWeight, User, WeightIcon } from
 import { Poppins } from 'next/font/google'
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const poppins = Poppins({
     subsets: ['latin'], // Or other subsets as needed

@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 import { ChevronLeft, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import {
-    Card,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { StepChart } from '@/components/charts/step-tracker';
@@ -17,7 +15,7 @@ export default function StepTracker() {
     const router = useRouter();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [stepCount, setStepCount] = useState('');
-    const [stepData, setStepData] = useState<{steps: number, date: Date}[]>([]);
+    const [stepData, setStepData] = useState<{ steps: number, date: Date }[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {

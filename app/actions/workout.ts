@@ -48,7 +48,7 @@ export async function addWorkout(id: string, unit: string, duration: number, num
         if (!userDetails || !userDetails.weight) return;
 
         if (unit === "hours") {
-            const caloriesBurned = ((workout?.met * userDetails?.weight * (duration*60) * 1.05));
+            const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05));
             await prisma.workoutLog.create({
                 data: {
                     userId: userId,

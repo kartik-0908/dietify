@@ -62,7 +62,7 @@ export async function addWorkout(id: string, unit: string, duration: number, num
             }
         }
         else if (unit === "min") {
-            const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05));
+            const caloriesBurned = ((workout?.met * userDetails?.weight * (duration) * 1.05))/60;
             await prisma.workoutLog.create({
                 data: {
                     userId: userId,

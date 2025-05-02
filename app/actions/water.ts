@@ -59,7 +59,7 @@ export async function setWaterIntakeGoal(goal: number) {
     if (!userDetails) return;
     const userId = user.id;
     try {
-
+        console.log('setting water intake goal for user', userId, goal)
         await prisma.user.update({
             where: {
                 id: userId

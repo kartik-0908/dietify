@@ -131,3 +131,31 @@ export async function getUserBmi(userId: string): Promise<number> {
         throw new Error("Failed to calculate BMI");
     }
 }
+
+export async function getAllUsers() {
+    try {
+        const users = await prisma.user.findMany();
+        return users;
+    } catch (error) {
+        console.error("Error fetching all users:", error);
+        return [];
+    }
+}
+
+export async function getUserNameAndEmail(userId: string): Promise<{ name: string; email: string } | null> {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: userId }
+        });
+        if (!user) return null;
+        return {
+            name: `${user.firstName} ${user.lastName}`,
+            email: user.email
+        };
+    } catch (error) {
+        console.error("Error fetching user name and email:", error);
+        return null;
+    }
+}
+
+

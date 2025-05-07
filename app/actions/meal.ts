@@ -277,3 +277,197 @@ export async function getTodayCaloriesIntake() {
         return 0
     }
 }
+
+export async function getAllDietChartsForUser(userId: string) {
+    try {
+        const dietCharts = await prisma.dietChart.findMany({
+            where: { userId },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+        console.log(dietCharts)
+        return dietCharts;
+    } catch (error) {
+        console.error(`Error fetching all diet charts for user ${userId}:`, error);
+        return [];
+    }
+}
+
+export async function createDietChartForUser(
+    userId: string,
+    day: number,
+    month: number,
+    year: number
+): Promise<{ success: boolean; message: string }> {
+    try {
+        const existingChart = await prisma.dietChart.findUnique({
+            where: {
+                userId_day_month_year: {
+                    userId,
+                    day,
+                    month,
+                    year,
+                },
+            },
+        });
+
+        if (existingChart) {
+            return {
+                success: false,
+                message: `Diet chart for ${day}/${month}/${year} already exists for this user.`,
+            };
+        }
+
+        await prisma.dietChart.create({
+            data: {
+                userId,
+                day,
+                month,
+                year,
+            },
+        });
+
+        return {
+            success: true,
+            message: "Diet chart created successfully.",
+        };
+    } catch (error) {
+        console.error(`Error creating diet chart for user ${userId}:`, error);
+        return {
+            success: false,
+            message: "Failed to create diet chart.",
+        };
+    }
+}
+
+export async function getDietChartById(chartId: string): Promise<{
+    breakfastItems: any[],
+    lunchItems: any[],
+    dinnerItems: any[]
+}> {
+    try {
+        const dietChart = await prisma.dietChart.findUnique({
+            where: { id: chartId },
+            include: {
+                breakfastItems: { include: { mealItem: true } },
+                lunchItems: { include: { mealItem: true } },
+                dinnerItems: { include: { mealItem: true } },
+            },
+        });
+
+        if (!dietChart) {
+            return {
+                breakfastItems: [],
+                lunchItems: [],
+                dinnerItems: [],
+            };
+        }
+
+        return {
+            breakfastItems: dietChart.breakfastItems,
+            lunchItems: dietChart.lunchItems,
+            dinnerItems: dietChart.dinnerItems,
+        };
+    } catch (error) {
+        console.error(`Error fetching diet chart by id ${chartId}:`, error);
+        return {
+            breakfastItems: [],
+            lunchItems: [],
+            dinnerItems: [],
+        };
+    }
+}
+
+export async function getAllMealItems() {
+    try {
+        const mealItems = await prisma.mealItem.findMany();
+        console.log(mealItems)
+        return mealItems;
+    } catch (error) {
+        console.error("Error fetching all meal items:", error);
+        return [];
+    }
+}
+
+// Add a meal item to a diet chart for a specific meal type
+export async function addItemToDietChart(
+    chartId: string,
+    mealType: "breakfast" | "lunch" | "dinner",
+    mealItemId: number,
+    servingSize: string
+): Promise<{ success: boolean; message: string; item?: any }> {
+    try {
+        const mealItem = await prisma.mealItem.findUnique({
+            where: { id: mealItemId },
+        });
+        if (!mealItem) {
+            return {
+                success: false,
+                message: "Meal item not found.",
+            };
+        }
+
+        const itemData = {
+            dietChartId: chartId,
+            mealItemId,
+            servingSize: servingSize,
+            Carbs: mealItem.Carbs,
+            Fat: mealItem.Fat,
+            Protein: mealItem.Protein,
+            Calories: mealItem.Calories,
+        };
+
+        let createdItem;
+        if (mealType === "breakfast") {
+            createdItem = await prisma.breakfastItem.create({ data: itemData });
+        } else if (mealType === "lunch") {
+            createdItem = await prisma.lunchItem.create({ data: itemData });
+        } else if (mealType === "dinner") {
+            createdItem = await prisma.dinnerItem.create({ data: itemData });
+        } else {
+            return {
+                success: false,
+                message: "Invalid meal type.",
+            };
+        }
+
+        return {
+            success: true,
+            message: `Item added to ${mealType} successfully.`,
+            item: createdItem,
+        };
+    } catch (error) {
+        console.error(`Error adding item to ${mealType} for chart ${chartId}:`, error);
+        return {
+            success: false,
+            message: "Failed to add item to diet chart.",
+        };
+    }
+}
+
+// Delete a meal item from a diet chart for a specific meal type
+export async function deleteItemFromDietChart(
+    mealType: "breakfast" | "lunch" | "dinner",
+    itemId: string
+) {
+    try {
+        if (mealType === "breakfast") {
+            return await prisma.breakfastItem.delete({
+                where: { id: itemId },
+            });
+        } else if (mealType === "lunch") {
+            return await prisma.lunchItem.delete({
+                where: { id: itemId },
+            });
+        } else if (mealType === "dinner") {
+            return await prisma.dinnerItem.delete({
+                where: { id: itemId },
+            });
+        }
+    } catch (error) {
+        console.error(`Error deleting item from ${mealType}:`, error);
+        throw error;
+    }
+}
+

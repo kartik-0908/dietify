@@ -52,7 +52,6 @@ export default async function UserDietChartsPage({ params }: Props) {
                             <p className="text-muted-foreground mb-6">
                                 This user does not have any diet charts yet.
                             </p>
-                            <CreateDietChartButton userId={id} />
                         </div>
                     ) : (
                         <ul className="grid gap-8 sm:grid-cols-2">

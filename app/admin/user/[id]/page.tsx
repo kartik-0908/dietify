@@ -7,12 +7,25 @@ interface Props {
     params: Promise<{ id: string }>;
 }
 
+interface DietChart {
+    id: string;
+    day: number;
+    month: number;
+    year: number;
+    // Add other fields if needed
+}
+
+interface User {
+    name: string;
+    email: string;
+}
+
 export default async function UserDietChartsPage({ params }: Props) {
     const { id } = await params;
-    const charts = await getAllDietChartsForUser(id);
-    const user = await getUserNameAndEmail(id);
+    const charts: DietChart[] = await getAllDietChartsForUser(id);
+    const user: User | null = await getUserNameAndEmail(id);
 
-    if (!charts) {
+    if (!charts || charts.length === 0) {
         return (
             <div className="max-w-2xl mx-auto py-10 px-4">
                 {user && (
@@ -40,7 +53,7 @@ export default async function UserDietChartsPage({ params }: Props) {
 
             <h1 className="text-3xl font-bold mb-8 text-center">Diet Charts</h1>
             <ul className="space-y-6">
-                {charts.map((chart: any) => (
+                {charts.map((chart) => (
                     <li key={chart.id} className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
                         <Link href={`/admin/user/${id}/${chart.id}`}>
                             <div className="font-semibold mb-2 cursor-pointer">

@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { getAllUsers } from "@/app/actions/user";
 
+interface User {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    // Add other fields if needed
+}
+
 export default async function UsersPage() {
-    const users = await getAllUsers();
+    const users: User[] = await getAllUsers();
 
     return (
         <div className="max-w-2xl mx-auto py-10 px-4">
             <h1 className="text-3xl font-bold mb-8 text-center">All Users</h1>
             <ul className="space-y-4">
-                {users.map((user: any) => (
+                {users.map((user) => (
                     <li key={user.id}>
                         <Link
                             href={`/admin/user/${user.id}`}

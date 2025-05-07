@@ -1,17 +1,20 @@
-import { getDietChartById, getAllMealItems } from "@/app/actions/meal";
+import { getDietChartById, getAllMealItems, BreakfastItem, LunchItem, DinnerItem } from "@/app/actions/meal";
 import AddItemForm from "./additem";
 
 interface Props {
     params: Promise<{ chart: string }>;
 }
 
+interface ChartData {
+    breakfastItems: BreakfastItem[];
+    lunchItems: LunchItem[];
+    dinnerItems: DinnerItem[];
+}
+
 export default async function UserDietChartsPage({ params }: Props) {
     const { chart } = await params;
-    const chartData = await getDietChartById(chart);
+    const chartData: ChartData = await getDietChartById(chart);
     const mealItems = await getAllMealItems();
-
-    // Helper to render Add Item form for a meal type
-   
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -25,7 +28,7 @@ export default async function UserDietChartsPage({ params }: Props) {
                     {chartData.breakfastItems.length === 0 && (
                         <li className="text-gray-500">No items</li>
                     )}
-                    {chartData.breakfastItems.map((item: any) => (
+                    {chartData.breakfastItems.map((item) => (
                         <li key={item.id} className="mb-2">
                             {item.mealItem?.name || "Unnamed Item"}
                         </li>
@@ -43,7 +46,7 @@ export default async function UserDietChartsPage({ params }: Props) {
                     {chartData.lunchItems.length === 0 && (
                         <li className="text-gray-500">No items</li>
                     )}
-                    {chartData.lunchItems.map((item: any) => (
+                    {chartData.lunchItems.map((item) => (
                         <li key={item.id} className="mb-2">
                             {item.mealItem?.name || "Unnamed Item"}
                         </li>
@@ -61,7 +64,7 @@ export default async function UserDietChartsPage({ params }: Props) {
                     {chartData.dinnerItems.length === 0 && (
                         <li className="text-gray-500">No items</li>
                     )}
-                    {chartData.dinnerItems.map((item: any) => (
+                    {chartData.dinnerItems.map((item) => (
                         <li key={item.id} className="mb-2">
                             {item.mealItem?.name || "Unnamed Item"}
                         </li>

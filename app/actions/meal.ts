@@ -341,10 +341,63 @@ export async function createDietChartForUser(
     }
 }
 
+// Define types matching your Prisma models
+export type BreakfastItem = {
+    id: string;
+    dietChartId: string;
+    mealItemId: number;
+    servingSize: string;
+    Carbs: number;
+    Fat: number;
+    Protein: number;
+    Calories: number;
+    isConsumed: boolean;
+    mealItem: {
+        // Add relevant MealItem fields here, or import MealItem type if available
+        id: number;
+        name: string;
+        // ...other fields...
+    };
+};
+
+export type LunchItem = {
+    id: string;
+    dietChartId: string;
+    mealItemId: number;
+    servingSize: string;
+    Carbs: number;
+    Fat: number;
+    Protein: number;
+    Calories: number;
+    isConsumed: boolean;
+    mealItem: {
+        id: number;
+        name: string;
+        // ...other fields...
+    };
+};
+
+export type DinnerItem = {
+    id: string;
+    dietChartId: string;
+    mealItemId: number;
+    servingSize: string;
+    Carbs: number;
+    Fat: number;
+    Protein: number;
+    Calories: number;
+    isConsumed: boolean;
+    mealItem: {
+        id: number;
+        name: string;
+        // ...other fields...
+    };
+};
+
 export async function getDietChartById(chartId: string): Promise<{
-    breakfastItems: any[],
-    lunchItems: any[],
-    dinnerItems: any[]
+    breakfastItems: BreakfastItem[],
+    lunchItems: LunchItem[],
+    dinnerItems: DinnerItem[]
 }> {
     try {
         const dietChart = await prisma.dietChart.findUnique({
@@ -365,9 +418,9 @@ export async function getDietChartById(chartId: string): Promise<{
         }
 
         return {
-            breakfastItems: dietChart.breakfastItems,
-            lunchItems: dietChart.lunchItems,
-            dinnerItems: dietChart.dinnerItems,
+            breakfastItems: dietChart.breakfastItems as BreakfastItem[],
+            lunchItems: dietChart.lunchItems as LunchItem[],
+            dinnerItems: dietChart.dinnerItems as DinnerItem[],
         };
     } catch (error) {
         console.error(`Error fetching diet chart by id ${chartId}:`, error);

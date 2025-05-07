@@ -2,6 +2,8 @@ import { getAllDietChartsForUser } from "@/app/actions/meal";
 import { getUserNameAndEmail } from "@/app/actions/user";
 import CreateDietChartButton from "./createDietButton";
 import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -25,44 +27,55 @@ export default async function UserDietChartsPage({ params }: Props) {
     const charts: DietChart[] = await getAllDietChartsForUser(id);
     const user: User | null = await getUserNameAndEmail(id);
 
-    if (!charts || charts.length === 0) {
-        return (
-            <div className="max-w-2xl mx-auto py-10 px-4">
-                {user && (
-                    <div className="mb-6">
-                        <h2 className="text-xl font-semibold">{user.name}</h2>
-                        <p className="text-gray-600">{user.email}</p>
-                    </div>
-                )}
-                <CreateDietChartButton userId={id} />
-                <h1 className="text-2xl font-bold mb-4">No Diet Charts Found</h1>
-                <p>This user does not have any diet charts yet.</p>
-            </div>
-        );
-    }
-
     return (
-        <div className="max-w-2xl mx-auto py-10 px-4">
-            {user && (
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold">{user.name}</h2>
-                    <p className="text-gray-600">{user.email}</p>
+        <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
+                <div>
+                    {user && (
+                        <>
+                            <h2 className="text-3xl font-bold tracking-tight">{user.name}</h2>
+                            <p className="text-muted-foreground text-base">{user.email}</p>
+                        </>
+                    )}
                 </div>
-            )}
-            <CreateDietChartButton userId={id} />
+                <CreateDietChartButton userId={id} />
+            </div>
 
-            <h1 className="text-3xl font-bold mb-8 text-center">Diet Charts</h1>
-            <ul className="space-y-6">
-                {charts.map((chart) => (
-                    <li key={chart.id} className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
-                        <Link href={`/admin/user/${id}/${chart.id}`}>
-                            <div className="font-semibold mb-2 cursor-pointer">
-                                {chart.day}/{chart.month}/{chart.year}
-                            </div>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            <Card className="shadow-md">
+                <CardHeader>
+                    <CardTitle className="text-center text-xl">Diet Charts</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {(!charts || charts.length === 0) ? (
+                        <div className="text-center py-16">
+                            <h3 className="text-lg font-semibold mb-2">No Diet Charts Found</h3>
+                            <p className="text-muted-foreground mb-6">
+                                This user does not have any diet charts yet.
+                            </p>
+                            <CreateDietChartButton userId={id} />
+                        </div>
+                    ) : (
+                        <ul className="grid gap-8 sm:grid-cols-2">
+                            {charts.map((chart) => (
+                                <li key={chart.id}>
+                                    <Link href={`/admin/user/${id}/${chart.id}`}>
+                                        <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+                                            <CardContent className="p-8 flex flex-col items-center">
+                                                <span className="text-lg font-semibold mb-2">
+                                                    {chart.day}/{chart.month}/{chart.year}
+                                                </span>
+                                                <Button variant="link" className="mt-2">
+                                                    View Details
+                                                </Button>
+                                            </CardContent>
+                                        </Card>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </CardContent>
+            </Card>
         </div>
     );
 }

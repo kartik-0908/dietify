@@ -16,9 +16,9 @@ export default async function UsersPage() {
     const users: User[] = await getAllUsers();
 
     return (
-        <div className="max-w-2xl mx-auto py-10 px-4">
+        <div className="max-w-6xl mx-auto py-10 px-4">
             <h1 className="text-3xl font-bold mb-8 text-center">All Users</h1>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {users.map((user) => (
                     <Card key={user.id}>
                         <CardHeader className="flex flex-row items-center gap-4">

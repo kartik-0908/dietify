@@ -444,12 +444,16 @@ export async function getAllMealItems() {
 }
 
 // Add a meal item to a diet chart for a specific meal type
+type AddItemResult =
+    | { success: true; message: string; item: BreakfastItem | LunchItem | DinnerItem }
+    | { success: false; message: string };
+
 export async function addItemToDietChart(
     chartId: string,
     mealType: "breakfast" | "lunch" | "dinner",
     mealItemId: number,
     servingSize: string
-): Promise<{ success: boolean; message: string; item?: any }> {
+): Promise<AddItemResult> {
     try {
         const mealItem = await prisma.mealItem.findUnique({
             where: { id: mealItemId },
@@ -471,13 +475,22 @@ export async function addItemToDietChart(
             Calories: mealItem.Calories,
         };
 
-        let createdItem;
+        let createdItem: BreakfastItem | LunchItem | DinnerItem;
         if (mealType === "breakfast") {
-            createdItem = await prisma.breakfastItem.create({ data: itemData });
+            createdItem = await prisma.breakfastItem.create({
+                data: itemData,
+                include: { mealItem: true },
+            }) as BreakfastItem;
         } else if (mealType === "lunch") {
-            createdItem = await prisma.lunchItem.create({ data: itemData });
+            createdItem = await prisma.lunchItem.create({
+                data: itemData,
+                include: { mealItem: true },
+            }) as LunchItem;
         } else if (mealType === "dinner") {
-            createdItem = await prisma.dinnerItem.create({ data: itemData });
+            createdItem = await prisma.dinnerItem.create({
+                data: itemData,
+                include: { mealItem: true },
+            }) as DinnerItem;
         } else {
             return {
                 success: false,

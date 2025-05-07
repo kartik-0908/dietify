@@ -5,8 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+type MealItem = {
+    id: number;
+    name: string;
+    Calories: number;
+    servingSize?: string;
+};
 
-export default function AddItemForm({ mealType, chart, mealItems }: { mealType: "breakfast" | "lunch" | "dinner", chart: string, mealItems: any[] }) {
+export default function AddItemForm({ mealType, chart, mealItems }: { mealType: "breakfast" | "lunch" | "dinner", chart: string, mealItems: MealItem[] }) {
     const [show, setShow] = React.useState(false);
     const [selected, setSelected] = React.useState<number | null>(null);
     const [servingSize, setServingSize] = React.useState("");
@@ -42,7 +48,7 @@ export default function AddItemForm({ mealType, chart, mealItems }: { mealType: 
                         value={selected ? String(selected) : ""}
                         onValueChange={val => {
                             setSelected(Number(val));
-                            const item = mealItems.find((m: any) => m.id === Number(val));
+                            const item = mealItems.find((m) => m.id === Number(val));
                             setServingSize(item?.servingSize || "");
                         }}
                     >
@@ -50,7 +56,7 @@ export default function AddItemForm({ mealType, chart, mealItems }: { mealType: 
                             <SelectValue placeholder="Select Item" />
                         </SelectTrigger>
                         <SelectContent>
-                            {mealItems.map((item: any) => (
+                            {mealItems.map((item) => (
                                 <SelectItem key={item.id} value={String(item.id)}>
                                     {item.name} ({item.Calories} cal)
                                 </SelectItem>

@@ -452,7 +452,8 @@ export async function addItemToDietChart(
     chartId: string,
     mealType: "breakfast" | "lunch" | "dinner",
     mealItemId: number,
-    servingSize: string
+    servingSize: string,
+    unit: number
 ): Promise<AddItemResult> {
     try {
         const mealItem = await prisma.mealItem.findUnique({
@@ -469,10 +470,10 @@ export async function addItemToDietChart(
             dietChartId: chartId,
             mealItemId,
             servingSize: servingSize,
-            Carbs: mealItem.Carbs,
-            Fat: mealItem.Fat,
-            Protein: mealItem.Protein,
-            Calories: mealItem.Calories,
+            Carbs: mealItem.Carbs * unit,
+            Fat: mealItem.Fat * unit,
+            Protein: mealItem.Protein * unit,
+            Calories: mealItem.Calories * unit,
         };
 
         let createdItem: BreakfastItem | LunchItem | DinnerItem;

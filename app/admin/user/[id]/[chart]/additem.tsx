@@ -16,13 +16,15 @@ export default function AddItemForm({ mealType, chart, mealItems }: { mealType: 
     const [show, setShow] = React.useState(false);
     const [selected, setSelected] = React.useState<number | null>(null);
     const [servingSize, setServingSize] = React.useState("");
+    const [unit, setUnit] = React.useState<number>(1); // unit as number
     const [message, setMessage] = React.useState("");
 
     const handleAdd = async () => {
         if (!selected) return;
         setMessage("Adding...");
         try {
-            const res = await addItemToDietChart(chart, mealType, selected, servingSize);
+            // Pass unit as number to backend
+            const res = await addItemToDietChart(chart, mealType, selected, servingSize, unit);
             if (res.success) {
                 setMessage("Added!");
                 setTimeout(() => window.location.reload(), 700);
@@ -68,6 +70,15 @@ export default function AddItemForm({ mealType, chart, mealItems }: { mealType: 
                         value={servingSize}
                         onChange={e => setServingSize(e.target.value)}
                         className="mt-2"
+                    />
+                    <Input
+                        placeholder="Unit (e.g. 1, 0.5)"
+                        value={unit}
+                        onChange={e => setUnit(Number(e.target.value))}
+                        className="mt-2"
+                        type="number"
+                        step="any"
+                        min="0"
                     />
                     <div className="flex gap-2 mt-4">
                         <Button onClick={handleAdd} type="button">

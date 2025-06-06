@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const WaitlistSignup = () => {
     const [signupMethod, setSignupMethod] = useState('email');
@@ -9,7 +10,7 @@ const WaitlistSignup = () => {
     // Replace this with your actual Make.com webhook URL
     const WEBHOOK_URL = 'https://hook.us2.make.com/v3fjvcta4bykp1vyo4ggos7m693gofgw';
 
-    const handleInputChange = (e: any) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
 
@@ -47,7 +48,7 @@ const WaitlistSignup = () => {
             });
 
             if (response.ok) {
-                alert('Thank you for joining our waitlist! We\'ll be in touch soon.');
+                alert('Thank you for joining our waitlist! We&apos;ll be in touch soon.');
                 setInputValue(''); // Reset form
             } else {
                 throw new Error('Failed to submit');
@@ -64,10 +65,12 @@ const WaitlistSignup = () => {
         <section id='waitlist' className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
-                <img
+                <Image
                     src="/bg-gradient.png"
                     alt="Waitlist Background"
-                    className="w-full h-full object-cover opacity-100"
+                    fill
+                    className="object-cover opacity-100"
+                    priority
                 />
             </div>
 
@@ -134,7 +137,7 @@ const WaitlistSignup = () => {
 
                     {/* Additional Info */}
                     <p className="text-center text-gray-400 text-xs mt-4">
-                        We'll notify you as soon as we're ready to launch. No spam, promise!
+                        We&apos;ll notify you as soon as we&apos;re ready to launch. No spam, promise!
                     </p>
                 </div>
             </div>

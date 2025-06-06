@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
 import ContactUs from "@/components/contact";
 import { WaitlistButton } from "@/components/waitlistButton";

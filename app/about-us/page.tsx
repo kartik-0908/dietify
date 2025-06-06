@@ -319,15 +319,7 @@ export default function AboutUs() {
                 <Link className="text-gray-300 hover:text-white" href="#">
                   About Us
                 </Link>
-                <Link className="text-gray-300 hover:text-white" href="#">
-                  FAQ
-                </Link>
-                <Link className="text-gray-300 hover:text-white" href="#">
-                  Contact Us
-                </Link>
-                <Link className="text-gray-300 hover:text-white" href="#">
-                  Testimonials
-                </Link>
+               
               </nav>
             </div>
           </div>

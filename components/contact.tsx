@@ -48,7 +48,7 @@ const WaitlistSignup = () => {
             });
 
             if (response.ok) {
-                alert('Thank you for joining our waitlist! We&apos;ll be in touch soon.');
+                alert("Thank you for joining our waitlist! We'll be in touch soon.");
                 setInputValue(''); // Reset form
             } else {
                 throw new Error('Failed to submit');

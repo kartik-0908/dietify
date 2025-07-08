@@ -1,12 +1,14 @@
 'use client'
 import { useState } from 'react';
+import React from 'react';
 
-export default function DeleteAccount() {
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: any) => {
+export default function DeleteAccount(): React.JSX.Element {
+  const [email, setEmail] = useState<string>('');
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>): Promise<void> => {
     e.preventDefault();
     if (!email) return;
     
@@ -17,6 +19,21 @@ export default function DeleteAccount() {
       setIsLoading(false);
       setIsSubmitted(true);
     }, 1000);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter' && email) {
+      handleSubmit(e);
+    }
+  };
+
+  const resetForm = (): void => {
+    setIsSubmitted(false);
+    setEmail('');
   };
 
   if (isSubmitted) {
@@ -63,10 +80,7 @@ export default function DeleteAccount() {
           </div>
 
           <button
-            onClick={() => {
-              setIsSubmitted(false);
-              setEmail('');
-            }}
+            onClick={resetForm}
             className="text-blue-600 hover:text-blue-700 text-sm font-medium"
           >
             Submit another request
@@ -80,6 +94,7 @@ export default function DeleteAccount() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
         <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Deitify</h1>
           <h2 className="text-xl font-semibold text-gray-700 mb-4">Delete Your Account</h2>
           <p className="text-gray-600 text-sm">
             Request permanent deletion of your Deitify account and all associated data
@@ -109,14 +124,10 @@ export default function DeleteAccount() {
               type="email"
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               placeholder="Enter your account email"
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              onKeyPress={(e) => {
-                if (e.key === 'Enter' && email) {
-                  handleSubmit(e);
-                }
-              }}
+              onKeyPress={handleKeyPress}
             />
             <p className="text-xs text-gray-500 mt-1">
               Enter the email address associated with your Deitify account
@@ -158,8 +169,8 @@ export default function DeleteAccount() {
         <div className="mt-6 pt-6 border-t border-gray-200">
           <p className="text-xs text-gray-500 text-center">
             Need help? Contact us at{' '}
-            <a href="mailto:teamdietify@gmail.com" className="text-blue-600 hover:text-blue-700">
-              teamdietify@gmail.com
+            <a href="mailto:support@deitify.com" className="text-blue-600 hover:text-blue-700">
+              support@deitify.com
             </a>
           </p>
         </div>

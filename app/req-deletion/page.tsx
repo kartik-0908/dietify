@@ -169,8 +169,8 @@ export default function DeleteAccount(): React.JSX.Element {
         <div className="mt-6 pt-6 border-t border-gray-200">
           <p className="text-xs text-gray-500 text-center">
             Need help? Contact us at{' '}
-            <a href="mailto:support@deitify.com" className="text-blue-600 hover:text-blue-700">
-              support@deitify.com
+            <a href="mailto:teamdietify@gmail.com" className="text-blue-600 hover:text-blue-700">
+              teamdietify@gmail.com
             </a>
           </p>
         </div>
